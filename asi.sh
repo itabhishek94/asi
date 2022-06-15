@@ -11,7 +11,7 @@ echo "██████  ███████ ███████ ██   �
 echo "                                                                     ";
 echo "                                                                     ";
 echo ""
-
+date
 echo  -e "\e[31;43m*****Software is Not Completed - i'm Working on my offtime*****\e[0m"
 echo ""
 echo  -e "\e[31;43m*****************Note : To stop The Script Press Ctrl + C or Ctrl + D *****************\e[0m"
@@ -75,7 +75,7 @@ exit
         "Edit Hostname" )
             echo "you chose choice $REPLY which is $opt."
 #!/bin/bash
-#Author: Abhi Gohil
+#Author: Abhishek Gohil
 #Assign existing hostname to $hostn
 hostn=$(cat /etc/hostname)
 
@@ -113,15 +113,12 @@ sudo apt update
 sudo apt update --fix-missing
 sudo apt --fix-broken install
 sudo dpkg -P anydesk  
-sudo apt-get install dpkg-dev -y
-sudo apt-get install libgtkglext1 -y
-sudo apt-get install libpango1.0-0 -y
+sudo apt-get install build-essential net-tools libaio1 default-jdk openssh-server ssh libpango1.0-0 dpkg-dev libgtkglext1 -y
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
 sudo apt update
 sudo dpkg -i anydesk*.deb
 sudo apt install -f -y
-sudo apt install net-tools -y
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo dpkg -i wps*.deb
 #sudo snap install wps-office
@@ -165,6 +162,34 @@ exit
             ;;
         "Mannual Software Installation" )
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
+            PS3='Please enter your choice for Mannual Software Installation : '
+options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine " "Kaspersky Antivirus" "Remove Temp" "Repair Wi-fi" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Ubuntu Full Audit")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+            exit
+            ;;
+               "gedit")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!" 
+nohup gedit &>/dev/null &
+exit
+
+            ;;
+        "Logout")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+kill -9 -1
+
+            ;;
+            "Quit")
+            break
+exit
+exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
 
 exit
             ;;
@@ -173,14 +198,144 @@ exit
 nohup rdesktop -f 192.168.1.100 &>/dev/null &
 exit
             ;;
-        "PhpMyadmin")
+    "Custom Audit")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-nohup firefox http://localhost/phpmyadmin &>/dev/null &
+nohup rdesktop -f 192.168.1.100 &>/dev/null &
+exit
+            ;;
+    "Custom Audit")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+nohup rdesktop -f 192.168.1.100 &>/dev/null &
+exit
+            ;;
+    "ssh")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+sudo cat > /etc/ssh/sshd_config << EOF
+# Package generated configuration file
+# See the sshd_config(5) manpage for details
+ 
+# What ports, IPs and protocols we listen for
+Port 22
+# Use these options to restrict which interfaces/protocols sshd will bind to
+#ListenAddress ::
+#ListenAddress 0.0.0.0
+Protocol 2
+# HostKeys for protocol version 2
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_dsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+#Privilege Separation is turned on for security
+UsePrivilegeSeparation yes
+ 
+# Lifetime and size of ephemeral version 1 server key
+KeyRegenerationInterval 3600
+ServerKeyBits 1024
+ 
+# Logging
+SyslogFacility AUTH
+LogLevel INFO
+ 
+# Authentication:
+LoginGraceTime 120
+PermitRootLogin yes
+StrictModes yes
+ 
+RSAAuthentication yes
+PubkeyAuthentication yes
+#AuthorizedKeysFile %h/.ssh/authorized_keys
+ 
+# Don't read the user's ~/.rhosts and ~/.shosts files
+IgnoreRhosts yes
+# For this to work you will also need host keys in /etc/ssh_known_hosts
+RhostsRSAAuthentication no
+# similar for protocol version 2
+HostbasedAuthentication no
+# Uncomment if you don't trust ~/.ssh/known_hosts for RhostsRSAAuthentication
+#IgnoreUserKnownHosts yes
+ 
+# To enable empty passwords, change to yes (NOT RECOMMENDED)
+PermitEmptyPasswords no
+ 
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+ChallengeResponseAuthentication no
+ 
+# Change to no to disable tunnelled clear text passwords
+#PasswordAuthentication yes
+ 
+# Kerberos options
+#KerberosAuthentication no
+#KerberosGetAFSToken no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+ 
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+ 
+X11Forwarding yes
+X11DisplayOffset 10
+PrintMotd no
+PrintLastLog yes
+TCPKeepAlive yes
+#UseLogin no
+ 
+#MaxStartups 10:30:60
+#Banner /etc/issue.net
+ 
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+ 
+Subsystem sftp /usr/lib/openssh/sftp-server
+ 
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+UsePAM yes
+
+EOF
+sudo service ssh restart
+exit
+            ;;
+        "Wifi Repair")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+
+echo "asking for a administrator password while connect to wifi in ubuntu- Ubutnu Admin System policy
+Wifi not connecting, Wifi need admin password for connect, Wifi asking for administrative password, Wifi not working in ubuntu.
+For ubuntu system : -
+step 1 : Open Terminal.
+step 2 : Login with sudo user.
+setp 3 : Type the below command and [PRESS ENTER KEY].
+
+gedit /usr/share/polkit-1/actions/org.freedesktop.NetworkManager.policy
+Note : This  will open gedit network manager file.Do not delete any lines in this file.
+
+step 4 : Copy below Command.
+
+<allow_active>auth_admin_keep</allow_active>
+
+step 5 : find the keyword using ctrl + f
+
+step 6 :Replace with this lines
+
+
+
+Step 7 : Save FIle with [ Ctrl + x ] & Exit.
+
+Step 8 : Reboot the system is optional."
+
 exit
 
 
             ;;
-        "FInd User")
+        "Find User")
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 
 echo "Please Enter a User ID Number : "
@@ -195,15 +350,32 @@ fi
 
 exit
             ;;
-        "gedit")
+        "SSH CHECKING")
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
-nohup gedit &>/dev/null &
+
+#Plugin for checking if the SSH service is running
+
+SERVICE='ssh'
+
+if [ ps aux | grep -v grep | grep $SERVICE > /dev/null ];
+then
+        exit 0
+else
+        exit 1
+fi
 exit
 
             ;;
         "Logout")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-kill -9 -1
+
+read -p "Press Y key to Reboot, N for Exit $foo - [y/n]" answer
+if [ $answer = y ] ; then
+#Press a key to reboot
+ls
+ else
+  exit
+fi
 
             ;;
         "PowerOff Machine")
@@ -217,13 +389,21 @@ sudo reboot
             ;;
         "Learn command")
             echo -e "\nTo open Open Office 4 from shell => /opt/openoffice4/program/./soffice.bin \n"
-echo -e "To Open Turbo c from Shell => dosbox \n "
-echo -e "To Open Windows Remote Desktop with rdesktop command Shell => rdesktop -f 192.168.1.100 \n"
 echo -e "To Open Oracle 10 g from Shell => sudo /etc/init.d/oracle-xe force-reload \nfirefox http://localhost:8181/apex \n"
-echo -e "To Open sublime from Shell => subl \n"
 echo -e "To Open phpmyadmin from Shell => firefox http://localhost/phpmyadmin \n"
-echo -e "To Open data backup from Shell => firefox http://192.168.1.200 \n"
 echo -e "To Open Apache LocalHost from Shell => firefox http://localhost/yourwebsitename \n "
+https://www.liveagent.com/templates/ticketing/
+https://blog.happyfox.com/best-canned-response-templates-for-customer-support-emails/#Closing
+https://www.jitbit.com/news/ticket-queue-management/
+https://askubuntu.com/questions/1705/how-can-i-create-a-select-menu-in-a-shell-script
+https://phoenixnap.com/kb/bash-case-statement
+https://stackoverflow.com/questions/12614011/using-case-for-a-range-of-numbers-in-bash
+https://linuxize.com/post/bash-case-statement/	
+https://www.thegeekstuff.com/2010/07/bash-case-statement/
+https://gist.github.com/waleedahmad/a5b17e73c7daebdd048f823c68d1f57a
+https://www.tecmint.com/using-shell-script-to-automate-linux-system-maintenance-tasks/
+https://linuxconfig.org/bash-scripting-tutorial
+
 exit
       ;;
         "Quit")
@@ -234,11 +414,6 @@ exit
         *) echo "invalid option $REPLY";;
     esac
 done
-#how to remote windows login
-#open terminal ( Ctrl + Alt + T )
-#type this command
 
-
-#rdesktop -f 192.168.1.100
-
+#rdesktop -f ip
 #press enter to connect
