@@ -108,12 +108,22 @@ exit
             echo "you chose choice $REPLY which is $opt.Please Wait...!"
 #!/bin/bash
 sudo apt remove anydesk -y
+sudo apt purge anydesk firefox rhythmbox team -y
+sudo apt-get remove --purge libreoffice*
+sudo apt-get clean -y
+sudo apt-get remove fonts-opensymbol libreoffice libreoffice-\* openoffice.org-dtd-officedocument1.0 python\*-uno uno-libs3-\* ure ure-dbg -y
+sudo apt-get remove --purge libreoffice-core -y
+sudo apt-get remove libreoffice-core -y
+sudo apt purge -y libreoffice*
+sudo apt-get remove --purge -y libreoffice*
+sudo apt purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel -y
+sudo apt-get autoremove -y
 sudo apt autoremove -y
-sudo apt update
-sudo apt update --fix-missing
-sudo apt --fix-broken install
-sudo dpkg -P anydesk  
-sudo apt-get install build-essential net-tools libaio1 default-jdk openssh-server ssh libpango1.0-0 dpkg-dev libgtkglext1 -y
+sudo apt update -y
+sudo apt-get install build-essential net-tools -y
+#sudo apt-get install libaio1 default-jdk openssh-server ssh libpango1.0-0 dpkg-dev libgtkglext1 -y
+sudo apt update --fix-missing -y
+sudo apt --fix-broken install -y
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
 sudo apt update
@@ -141,9 +151,10 @@ chmod +x install-driver uninstall-driver
 cd ..
 chmod +x setup.sh
 #./setup.sh
-dpkg -i kodak*.deb
-dpkg -i lib*.deb
-apt install -f -y
+#dpkg -i kodak*.deb
+#dpkg -i lib*.deb
+sudo apt update --fix-missing
+sudo apt --fix-broken install
 #hp-plugin
 chmod +x Ubuntu\ \(1\).sh
 chmod +x Ubuntu.sh
@@ -157,7 +168,7 @@ chmod +x Ubuntu.sh
 #wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -f -y
 #https://www.cups.org/doc/admin.html
-
+sudo adduser delhivery netdev
 exit
             ;;
         "Mannual Software Installation" )
