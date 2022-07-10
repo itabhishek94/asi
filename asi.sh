@@ -16,7 +16,7 @@ echo  -e "\e[31;43m*****Software is Not Completed - i'm Working on my offtime***
 echo ""
 echo  -e "\e[31;43m*****************Note : To stop The Script Press Ctrl + C or Ctrl + D *****************\e[0m"
 PS3='Please enter your choice : '
-options=("Ubuntu Full Audit" "Edit Hostname" "Automatic All Software Installation" "Mannual Software Installation" "Custom Audit" "Role-wise Software Installation" "Repair Software/Reinstallation" "Remove Temp" "Repair Wi-fi" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
+options=("Ubuntu Full Audit" "Edit Hostname" "Automatic All Software Installation" "Mannual Software Installation" "Custom Audit" "Connect to Windows Server" "Repair Software/Reinstallation" "RemoveTemp" "Repair Wi-fi" "Wifi Rights to standard users" "Install Wifi Driver" "Uninstall All Software" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -178,22 +178,22 @@ options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office"
 select opt in "${options[@]}"
 do
     case $opt in
-        "Ubuntu Full Audit")
+        "Custom Audit")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
             exit
             ;;
-               "gedit")
+               "Connect to Windows Server")
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 nohup gedit &>/dev/null &
 exit
 
             ;;
-        "Logout")
+        "Repair Software/Reinstallation")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 kill -9 -1
 
             ;;
-            "Quit")
+            "RemoveTemp")
             break
 exit
 exit
@@ -209,16 +209,104 @@ exit
 nohup rdesktop -f 192.168.1.100 &>/dev/null &
 exit
             ;;
-    "Custom Audit")
+      "Connect to Windows Server")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!" 
+nohup gedit &>/dev/null &
+exit
+
+            ;;
+        "Repair Software/Reinstallation")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+kill -9 -1
+
+            ;;
+            "RemoveTemp")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 nohup rdesktop -f 192.168.1.100 &>/dev/null &
 exit
             ;;
-    "Custom Audit")
+ "Repair Wi-fi")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-nohup rdesktop -f 192.168.1.100 &>/dev/null &
+
+echo "asking for a administrator password while connect to wifi in ubuntu- Ubutnu Admin System policy
+Wifi not connecting, Wifi need admin password for connect, Wifi asking for administrative password, Wifi not working in ubuntu.
+For ubuntu system : -
+step 1 : Open Terminal.
+step 2 : Login with sudo user.
+setp 3 : Type the below command and [PRESS ENTER KEY].
+
+gedit /usr/share/polkit-1/actions/org.freedesktop.NetworkManager.policy
+Note : This  will open gedit network manager file.Do not delete any lines in this file.
+
+step 4 : Copy below Command.
+
+<allow_active>auth_admin_keep</allow_active>
+
+step 5 : find the keyword using ctrl + f
+
+step 6 :Replace with this lines
+
+
+
+Step 7 : Save FIle with [ Ctrl + x ] & Exit.
+
+Step 8 : Reboot the system is optional."
+
 exit
             ;;
+           "Wifi Rights to standard users")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+  
+            sudo adduser delhivery netdev
+                        echo "The wifi access privileges of standard users are changed successfully. Standard users are now able to connect to various wifi networks."
+ exit           
+            ;;
+           
+           "Install Wifi Driver")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+apt-get update
+apt-get install mokutil && mokutil --sb-state
+
+apt-get install git build-essential linux-headers-$(uname -r) -y
+
+apt-get install git -y
+git clone https://github.com/lwfinger/rtw88.git
+cd rtw88
+make
+make install
+
+rm -v -R --interactive=never ~/rtw88
+
+cd /etc/default/grub
+
+#change GRUB_CMDLINE_LINUX_DEFAULT=“quiet splash” line as below
+
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i8042.nopnp=1 pci=nocrs"/g' /etc/default/grub 
+
+sudo update-grub
+
+init 6
+ 
+            ;;
+           "Uninstall All Software")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+  
+           sudo apt remove anydesk -y
+sudo apt purge anydesk firefox rhythmbox teamviewer chromium* -y
+sudo apt-get remove --purge libreoffice*
+sudo apt-get clean -y
+sudo apt-get remove fonts-opensymbol libreoffice libreoffice-\* openoffice.org-dtd-officedocument1.0 python\*-uno uno-libs3-\* ure ure-dbg -y
+sudo apt-get remove --purge libreoffice-core -y
+sudo apt-get remove libreoffice-core -y
+sudo apt purge -y libreoffice*
+sudo apt-get remove --purge -y libreoffice*
+sudo apt purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel -y
+sudo apt-get autoremove -y
+sudo apt autoremove -y
+sudo apt update -y
+            exit           
+            ;;
+            
     "ssh")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 sudo cat > /etc/ssh/sshd_config << EOF
@@ -315,37 +403,7 @@ EOF
 sudo service ssh restart
 exit
             ;;
-        "Wifi Repair")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-
-echo "asking for a administrator password while connect to wifi in ubuntu- Ubutnu Admin System policy
-Wifi not connecting, Wifi need admin password for connect, Wifi asking for administrative password, Wifi not working in ubuntu.
-For ubuntu system : -
-step 1 : Open Terminal.
-step 2 : Login with sudo user.
-setp 3 : Type the below command and [PRESS ENTER KEY].
-
-gedit /usr/share/polkit-1/actions/org.freedesktop.NetworkManager.policy
-Note : This  will open gedit network manager file.Do not delete any lines in this file.
-
-step 4 : Copy below Command.
-
-<allow_active>auth_admin_keep</allow_active>
-
-step 5 : find the keyword using ctrl + f
-
-step 6 :Replace with this lines
-
-
-
-Step 7 : Save FIle with [ Ctrl + x ] & Exit.
-
-Step 8 : Reboot the system is optional."
-
-exit
-
-
-            ;;
+       
         "Find User")
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 
