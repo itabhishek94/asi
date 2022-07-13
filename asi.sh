@@ -174,26 +174,56 @@ exit
         "Mannual Software Installation" )
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
             PS3='Please enter your choice for Mannual Software Installation : '
-options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine " "Kaspersky Antivirus" "Remove Temp" "Repair Wi-fi" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
+options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine" "Kaspersky Antivirus" "Remove Temp" "Repair Wi-fi" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Custom Audit")
+        "Chrome-Stable")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
             exit
             ;;
-               "Connect to Windows Server")
+               "Latest Chrome")
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 nohup gedit &>/dev/null &
 exit
 
             ;;
-        "Repair Software/Reinstallation")
+        "WPS-Stable Office")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+
+            ;;
+            
+        "Latest WPS Office")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 kill -9 -1
 
             ;;
-            "RemoveTemp")
+            "Anydesk")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+kill -9 -1
+
+            ;;
+             "ME - Manage Engine")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+kill -9 -1
+
+            ;;
+             "Kaspersky Antivirus")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+kill -9 -1
+
+            ;;
+             "WPS-Stable Office")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+kill -9 -1
+
+            ;;
+             "WPS-Stable Office")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+kill -9 -1
+
+            ;;
+            "Latest WPS Office")
             break
 exit
 exit
