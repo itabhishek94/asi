@@ -74,7 +74,6 @@ exit
             ;;
         "Edit Hostname" )
             echo "you chose choice $REPLY which is $opt."
-#!/bin/bash
 #Author: Abhishek Gohil
 #Assign existing hostname to $hostn
 hostn=$(cat /etc/hostname)
