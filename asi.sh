@@ -16,7 +16,7 @@ echo  -e "\e[31;43m*****Software is Not Completed - i'm Working on my offtime***
 echo ""
 echo  -e "\e[31;43m*****************Note : To stop The Script Press Ctrl + C or Ctrl + D *****************\e[0m"
 PS3='Please enter your choice : '
-options=("Ubuntu Full Audit" "Edit Hostname" "Automatic All Software Installation" "Mannual Software Installation" "Custom Audit" "Connect to Windows Server" "Repair Software/Reinstallation" "RemoveTemp" "Repair Wi-fi" "Wifi Rights to standard users" "Install Wifi Driver" "Uninstall All Software" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
+options=("Ubuntu Full Audit" "Edit Hostname" "Automatic All Software Installation" "Mannual Software Installation" "Custom Audit" "Connect to Windows Server" "Reset Ubuntu Setting" "Repair Software/Reinstallation" "RemoveTemp" "Repair Wi-fi" "Wifi Rights to standard users" "Install Wifi Driver" "Uninstall All Software" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -108,7 +108,7 @@ exit
 #!/bin/bash
 sudo apt remove anydesk -y
 sudo apt purge anydesk firefox rhythmbox team -y
-sudo apt-get remove --purge libreoffice*
+#sudo apt-get remove --purge libreoffice* -y
 sudo apt-get clean -y
 sudo apt-get remove fonts-opensymbol libreoffice libreoffice-\* openoffice.org-dtd-officedocument1.0 python\*-uno uno-libs3-\* ure ure-dbg -y
 sudo apt-get remove --purge libreoffice-core -y
@@ -123,6 +123,7 @@ sudo apt-get install build-essential net-tools -y
 #sudo apt-get install libaio1 default-jdk openssh-server ssh libpango1.0-0 dpkg-dev libgtkglext1 -y
 sudo apt update --fix-missing -y
 sudo apt --fix-broken install -y
+sudo apt list --upgradable -y
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
 sudo apt update
@@ -262,6 +263,11 @@ nohup gedit &>/dev/null &
 exit
 
             ;;
+      "Reset Ubuntu Setting")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!" 
+sudo dconf reset -f /
+exit
+;;
         "Repair Software/Reinstallation")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 kill -9 -1
@@ -269,7 +275,7 @@ kill -9 -1
             ;;
             "RemoveTemp")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-nohup rdesktop -f 192.168.1.100 &>/dev/null &
+
 exit
             ;;
  "Repair Wi-fi")
