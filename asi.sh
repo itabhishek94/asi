@@ -16,7 +16,7 @@ echo  -e "\e[31;43m*****Software is Not Completed - i'm Working on my offtime***
 echo ""
 echo  -e "\e[31;43m*****************Note : To stop The Script Press Ctrl + C or Ctrl + D *****************\e[0m"
 PS3='Please enter your choice : '
-options=("Ubuntu Full Audit" "Edit Hostname" "Automatic All Software Installation" "Mannual Software Installation" "Custom Audit" "Connect to Windows Server" "Reset Ubuntu Setting" "Repair Software/Reinstallation" "RemoveTemp" "Repair Wi-fi" "Wifi Rights to standard users" "Install Wifi Driver" "Uninstall All Software" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
+options=("Ubuntu Full Audit" "Edit Hostname" "Automatic Offline Software Installation" "Automatic Online Software Installation" "Mannual Software Installation" "Custom Audit" "Connect to Windows Server" "Reset Ubuntu Setting" "Repair Software/Reinstallation" "RemoveTemp" "Repair Wi-fi" "Wifi Rights to standard users" "Install Wifi Driver" "Uninstall All Software" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -103,7 +103,7 @@ fi
 #END
 exit
             ;;
-        "Automatic All Software Installation")
+        "Automatic Offline Software Installation")
             echo "you chose choice $REPLY which is $opt.Please Wait...!"
 #!/bin/bash
 sudo apt remove anydesk -y
@@ -155,7 +155,6 @@ chmod +x setup.sh
 #dpkg -i lib*.deb
 sudo apt update --fix-missing
 sudo apt --fix-broken install
-#hp-plugin
 chmod +x Ubuntu\ \(1\).sh
 chmod +x Ubuntu.sh
 ./Ubuntu\ \(1\).sh
@@ -168,6 +167,7 @@ chmod +x Ubuntu.sh
 #wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -f -y
 #https://www.cups.org/doc/admin.html
+#hp-plugin
 # Am i Root user?
 if [ $(id -u) -eq 0 ]; then
 username=delhivery
