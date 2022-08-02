@@ -9,9 +9,13 @@ https://www.wps.com/download/
 Open Office
 https://files02.tchspt.com/temp/Apache_OpenOffice_4.1.13_Win_x86_install_en-US.exe
 
-Thermal printer Driver Link
+Thermal printer TSC-TA210
 https://www.seagullscientific.com/downloads/printer-drivers/tsc-ta210/
+
+Thermal printer ZENPERT 4T520
 https://www.seagullscientific.com/downloads/printer-drivers/zenpert-4t520/
+
+Thermal printer ZEBRA
 https://www.seagullscientific.com/downloads/printer-drivers/zebra-gc420t-zpl/
 
 Hp M1136 Printer Driver :
