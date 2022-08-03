@@ -409,8 +409,15 @@ exit
             ;;
              "Kaspersky Antivirus")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-kill -9 -1
-
+chmod +x klnagent*.sh
+./klnagent*.sh
+cd /opt/kaspersky/klnagent64/bin
+sudo ./klnagchk
+cd /home/delhivery/
+sudo dpkg -i kesl_11.2.0-4528_amd64.deb
+/opt/kaspersky/kesl/bin/kesl-setup.pl
+kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG
+kesl-control -L --query
             ;;
              "WPS-Stable Office")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
