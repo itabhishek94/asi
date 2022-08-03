@@ -1,7 +1,16 @@
+                  ####################################################################################################
+                  #                                        asi.sh                                                    #
+                  # Written for Delhivery for the more Details Contact Abhishek(Surat)                               #
+                  # If any bug, report us in the link below                                                          #
+                  # Free to use/edit/distribute the code below by                                                    #
+                  # giving proper credit to itAbhishek94 and Author                                                  #
+                  #                                                                                                  #
+                  ####################################################################################################
+
 #!/bin/bash
 #Abhishek  Gohil
 echo ""
-echo  -e "\e[31;43m*****Automatic Software Installation By Abhishek Gohil W84459 - DELHIVERY *****\e[0m"
+echo  -e "\e[31;43m*****ASI-Automatic Software Installation By Abhishek Gohil W84459 - DELHIVERY *****\e[0m"
 echo ""
 echo "██████  ███████ ██      ██   ██ ██ ██    ██ ███████ ██████  ██    ██ ";
 echo "██   ██ ██      ██      ██   ██ ██ ██    ██ ██      ██   ██  ██  ██  ";
@@ -12,11 +21,11 @@ echo "                                                                     ";
 echo "                                                                     ";
 echo ""
 date
-echo  -e "\e[31;43m*****Software is Not Completed - i'm Working on my offtime*****\e[0m"
+echo  -e "\e[3;43m*************** Software is Not Completed - i'm Working on my offtime ***************\e[0m"
 echo ""
 echo  -e "\e[31;43m*****************Note : To stop The Script Press Ctrl + C or Ctrl + D *****************\e[0m"
 PS3='Please enter your choice : '
-options=("Ubuntu Full Audit" "Edit Hostname" "Automatic Offline Software Installation" "Automatic Online Software Installation" "Mannual Software Installation" "Custom Audit" "Connect to Windows Server" "Reset Ubuntu Setting" "Repair Software/Reinstallation" "RemoveTemp" "Repair Wi-fi" "Wifi Rights to standard users" "Install Wifi Driver" "Uninstall All Software" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
+options=("Ubuntu Full Audit" "System Information" "Edit Hostname" "Automatic Offline Software Installation" "Automatic Online Software Installation" "Mannual Software Installation" "Custom Audit" "Connect to Windows Server" "Reset Ubuntu Setting" "Repair Software/Reinstallation" "RemoveTemp" "Repair Wi-fi" "Wifi Rights to standard users" "Install Wifi Driver" "Uninstall All Software" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -72,7 +81,119 @@ echo ""
 echo -e "\e[1;32mCreated by Abhishek Gohil (W84459) \e[0m"
 exit
             ;;
-        "Edit Hostname" )
+        "System Information" )
+         echo "you chose choice $REPLY which is $opt.Please Wait...!"
+         # unset any variable which system may be using
+
+# clear the screen
+clear
+
+unset tecreset os architecture kernelrelease internalip externalip nameserver loadaverage
+
+while getopts iv name
+do
+    case $name in
+      i)iopt=1;;
+      v)vopt=1;;
+      *)echo "Invalid arg";;
+    esac
+done
+
+if [[ ! -z $iopt ]]
+then
+{
+wd=$(pwd)
+basename "$(test -L "$0" && readlink "$0" || echo "$0")" > /tmp/scriptname
+scriptname=$(echo -e -n $wd/ && cat /tmp/scriptname)
+su -c "cp $scriptname /usr/bin/monitor" root && echo "Congratulations! Script Installed, now run monitor Command" || echo "Installation failed"
+}
+fi
+
+if [[ ! -z $vopt ]]
+then
+{
+echo -e "tecmint_monitor version 0.1\nDesigned by Tecmint.com\nReleased Under Apache 2.0 License"
+}
+fi
+
+if [[ $# -eq 0 ]]
+then
+{
+
+
+# Define Variable tecreset
+tecreset=$(tput sgr0)
+
+# Check if connected to Internet or not
+ping -c 1 google.com &> /dev/null && echo -e '\E[32m'"Internet: $tecreset Connected" || echo -e '\E[32m'"Internet: $tecreset Disconnected"
+
+# Check OS Type
+os=$(uname -o)
+echo -e '\E[32m'"Operating System Type :" $tecreset $os
+
+# Check OS Release Version and Name
+cat /etc/os-release | grep 'NAME\|VERSION' | grep -v 'VERSION_ID' | grep -v 'PRETTY_NAME' > /tmp/osrelease
+echo -n -e '\E[32m'"OS Name :" $tecreset  && cat /tmp/osrelease | grep -v "VERSION" | cut -f2 -d\"
+echo -n -e '\E[32m'"OS Version :" $tecreset && cat /tmp/osrelease | grep -v "NAME" | cut -f2 -d\"
+
+# Check Architecture
+architecture=$(uname -m)
+echo -e '\E[32m'"Architecture :" $tecreset $architecture
+
+# Check Kernel Release
+kernelrelease=$(uname -r)
+echo -e '\E[32m'"Kernel Release :" $tecreset $kernelrelease
+
+# Check hostname
+echo -e '\E[32m'"Hostname :" $tecreset $HOSTNAME
+
+# Check Internal IP
+internalip=$(hostname -I)
+echo -e '\E[32m'"Internal IP :" $tecreset $internalip
+
+# Check External IP
+externalip=$(curl -s ipecho.net/plain;echo)
+echo -e '\E[32m'"External IP : $tecreset "$externalip
+
+# Check DNS
+nameservers=$(cat /etc/resolv.conf | sed '1 d' | awk '{print $2}')
+echo -e '\E[32m'"Name Servers :" $tecreset $nameservers
+
+# Check Logged In Users
+who>/tmp/who
+echo -e '\E[32m'"Logged In users :" $tecreset && cat /tmp/who
+
+# Check RAM and SWAP Usages
+free -h | grep -v + > /tmp/ramcache
+echo -e '\E[32m'"Ram Usages :" $tecreset
+cat /tmp/ramcache | grep -v "Swap"
+echo -e '\E[32m'"Swap Usages :" $tecreset
+cat /tmp/ramcache | grep -v "Mem"
+
+# Check Disk Usages
+df -h| grep 'Filesystem\|/dev/sda*' > /tmp/diskusage
+echo -e '\E[32m'"Disk Usages :" $tecreset
+cat /tmp/diskusage
+
+# Check Load Average
+loadaverage=$(uptime | cut -d ':' -f 5-)
+echo -e '\E[32m'"Load Average :" $tecreset $loadaverage
+
+# Check System Uptime
+tecuptime=$(uptime | awk '{print $3,$4}' | cut -f1 -d,)
+echo -e '\E[32m'"System Uptime Days/(HH:MM) :" $tecreset $tecuptime
+
+# Unset Variables
+unset tecreset os architecture kernelrelease internalip externalip nameserver loadaverage
+
+# Remove Temporary Files
+rm /tmp/osrelease /tmp/who /tmp/ramcache /tmp/diskusage
+}
+fi
+shift $(($OPTIND -1))
+ exit
+        ;;
+                 "Edit Hostname" )
             echo "you chose choice $REPLY which is $opt."
 #Author: Abhishek Gohil
 #Assign existing hostname to $hostn
@@ -188,16 +309,30 @@ else
 fi
 
 exit
+              ;;
+        "Automatic Online Software Installation")
+            echo "you chose choice $REPLY which is $opt.Please Wait...!"
+
+  
             ;;
+            
         "Mannual Software Installation" )
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-            PS3='Please enter your choice for Mannual Software Installation : '
+            PS4='Please enter your choice for Mannual Software Installation : '
 options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine" "Kaspersky Antivirus" "Remove Temp" "Repair Wi-fi" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
 select opt in "${options[@]}"
 do
     case $opt in
         "Chrome-Stable")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
+if [ -f google-chrome*.deb ]; then
+    echo "file exists."
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
+else 
+    echo "" 
+    echo  -e "\e[31;43m*****google-chrome deb file not found in Home Directory.Please Check file in Home Directory and try again*****\e[0m"
+fi
+
             exit
             ;;
                "Latest Chrome")
@@ -208,7 +343,13 @@ exit
             ;;
         "WPS-Stable Office")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-
+if [ -f wps*.deb ]; then
+    echo "file exists."
+    sudo sudo dpkg -i wps*.deb
+else 
+    echo "" 
+    echo  -e "\e[31;43m*****wps office deb file not found in Home Directory.Please Check file in Home Directory and try again*****\e[0m"
+fi
             ;;
             
         "Latest WPS Office")
@@ -218,6 +359,8 @@ kill -9 -1
             ;;
             "Anydesk")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
+            
+            
 kill -9 -1
 
             ;;
