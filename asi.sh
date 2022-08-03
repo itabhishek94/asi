@@ -371,14 +371,40 @@ kill -9 -1
             ;;
             "Anydesk")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-            
-            
-kill -9 -1
-
+if [ -f anydesk*.deb ]; then
+    echo "file exists."
+sudo apt remove anydesk -y
+sudo apt purge anydesk -y
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
+sudo apt update
+sudo dpkg -i anydesk*.deb
+sudo apt install -f -y
+sudo apt-get install -f -y
+else 
+    echo "" 
+    echo  -e "\e[31;43m*****Anydesk deb file not found in Home Directory.Please Check file in Home Directory and try again*****\e[0m"
+fi
+exit
             ;;
              "ME - Manage Engine")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-kill -9 -1
+	    apt-get update 
+cd /home/administrator/Desktop
+wget https://delhivery-it-docs-cdn.delhivery.com/DesktopCentral_LinuxAgent.bin 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA-Server.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json  
+sleep 5 
+chmod 777 DesktopCentral_LinuxAgent.bin
+./DesktopCentral_LinuxAgent.bin
+
+    echo "" 
+    echo  -e "\e[31;43m*****me installed*****\e[0m"	    
+exit
 
             ;;
              "Kaspersky Antivirus")
