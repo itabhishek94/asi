@@ -276,9 +276,21 @@ chmod +x setup.sh
 #dpkg -i lib*.deb
 sudo apt update --fix-missing
 sudo apt --fix-broken install
-chmod +x Ubuntu\ \(1\).sh
-chmod +x Ubuntu.sh
-./Ubuntu\ \(1\).sh
+apt-get update 
+cd /home/administrator/Desktop
+wget https://delhivery-it-docs-cdn.delhivery.com/DesktopCentral_LinuxAgent.bin 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA-Server.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json  
+sleep 5 
+chmod 777 DesktopCentral_LinuxAgent.bin
+./DesktopCentral_LinuxAgent.bin
+#chmod +x Ubuntu\ \(1\).sh
+#chmod +x Ubuntu.sh
+#./Ubuntu\ \(1\).sh
 #need display timeout setting and battary setting
 #ssh install
 #lpadmin -p printername -E -v socket://11.22.33.44 -m drv:///sample.drv/laserjet.ppd
