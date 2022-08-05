@@ -280,7 +280,20 @@ sudo apt --fix-broken install
 apt-get update 
 cd /home/administrator/Desktop
 
-#################################################################################################################33
+#################################################################################################################
+#echo "Stop Bluetooth"
+#sudo systemctl disable bluetooth
+#sudo systemctl stop bluetooth
+#sudo rfkill block bluetooth
+#sudo /etc/init.d/bluetooth stop
+#echo "Bluetooth Disabled.!!"
+
+#sudo mv /etc/init/bluetooth.conf /etc/init/bluetooth.conf.disabled
+#echo "Bluetooth permanently disabled successfully.!!!"
+
+#bluetooth re-enable
+#sudo mv /etc/init/bluetooth.conf.disabled /etc/init/bluetooth.conf
+#echo "Bluetooth re-enabled successfully.!!!"
 
 #need display timeout setting and battary setting
 #ssh install
