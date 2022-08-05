@@ -1,10 +1,10 @@
                   ####################################################################################################
-                  #                                        asi.sh                                                    #
+                  #                                           asi.sh                                                 #
                   # Written for Delhivery for the more Details Contact Abhishek(Surat)                               #
-                  # If any bug, report us in the link below                                                          #
-                  # Free to use/edit/distribute the code below by                                                    #
-                  # giving proper credit to itAbhishek94 and Author                                                  #
-                  #                                                                                                  #
+                  # If you find a bug, please notify us via the email address provided below.                        #
+		  # it.abhishek94@gmail.com                                                                          #
+                  # giving proper credit to Abhishek Gohil from Delhivery IT Team                                    #
+                  #                                       "Thank You..."                                             #
                   ####################################################################################################
 
 #!/bin/bash
