@@ -261,7 +261,8 @@ sudo ./klnagchk
 cd /home/delhivery/
 sudo dpkg -i kesl_11.2.0-4528_amd64.deb
 /opt/kaspersky/kesl/bin/kesl-setup.pl
-kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG
+
+#################################################################################################################33
 kesl-control -L --query
 #wget
 tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
@@ -278,19 +279,9 @@ sudo apt update --fix-missing
 sudo apt --fix-broken install
 apt-get update 
 cd /home/administrator/Desktop
-wget https://delhivery-it-docs-cdn.delhivery.com/DesktopCentral_LinuxAgent.bin 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA.crt 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA-Server.crt 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json  
-sleep 5 
-chmod 777 DesktopCentral_LinuxAgent.bin
-./DesktopCentral_LinuxAgent.bin
-#chmod +x Ubuntu\ \(1\).sh
-#chmod +x Ubuntu.sh
-#./Ubuntu\ \(1\).sh
+
+#################################################################################################################33
+
 #need display timeout setting and battary setting
 #ssh install
 #lpadmin -p printername -E -v socket://11.22.33.44 -m drv:///sample.drv/laserjet.ppd
@@ -390,17 +381,8 @@ exit
              "ME - Manage Engine")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 	    apt-get update 
-cd /home/administrator/Desktop
-wget https://delhivery-it-docs-cdn.delhivery.com/DesktopCentral_LinuxAgent.bin 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA.crt 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA-Server.crt 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json  
-sleep 5 
-chmod 777 DesktopCentral_LinuxAgent.bin
-./DesktopCentral_LinuxAgent.bin
+#################################################################################################################33
+
 
     echo "" 
     echo  -e "\e[31;43m*****me installed*****\e[0m"	    
@@ -409,15 +391,8 @@ exit
             ;;
              "Kaspersky Antivirus")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-chmod +x klnagent*.sh
-./klnagent*.sh
-cd /opt/kaspersky/klnagent64/bin
-sudo ./klnagchk
-cd /home/delhivery/
-sudo dpkg -i kesl_11.2.0-4528_amd64.deb
-/opt/kaspersky/kesl/bin/kesl-setup.pl
-kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG
-kesl-control -L --query
+#################################################################################################################33
+
             ;;
              "WPS-Stable Office")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
