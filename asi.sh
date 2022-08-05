@@ -291,7 +291,6 @@ cd /home/administrator/Desktop
 #wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -f -y
 #https://www.cups.org/doc/admin.html
-#hp-plugin
 # Am i Root user?
 if [ $(id -u) -eq 0 ]; then
 username=delhivery
@@ -394,17 +393,25 @@ exit
 #################################################################################################################33
 
             ;;
-             "WPS-Stable Office")
+             "HP printer & Scanner Driver")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-kill -9 -1
-
+	    sudo apt install apparmor-utils
+sudo aa-disable /usr/share/hplip/plugin.py
+hp-plugin
+	    exit
             ;;
-             "WPS-Stable Office")
+             "Barcode Printer Driver")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-kill -9 -1
-
+tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
+tar -xvf barcodedriver*.tar.gz
+tar -xvf LinuxSoftware_E1000_v4.2.1.x86_64.deb.tar.gz
+cd barcodedriver-1.2.06
+chmod +x install-driver uninstall-driver
+./uninstall-driver
+./install-driver
+exit
             ;;
-            "Latest WPS Office")
+            "Open Office")
             break
 exit
 exit
@@ -470,10 +477,19 @@ Step 8 : Reboot the system is optional."
 
 exit
             ;;
-           "Wifi Rights to standard users")
+           "Give Wifi Rights for standard users")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-  
-            sudo adduser delhivery netdev
+ls /sys/class/net
+echo "####################"
+sudo lshw -C network
+echo "####################"
+sudo lshw -businfo
+echo "lists information about devices on the USB bus/ USB Mini Wifi Information if Device Connected.!!"
+echo "PCI (internal) device"
+lspci -nnk | grep 0280 -A3
+sudo lsusb -v
+sudo adduser delhivery netdev
+#ip a
                         echo "The wifi access privileges of standard users are changed successfully. Standard users are now able to connect to various wifi networks."
  exit           
             ;;
