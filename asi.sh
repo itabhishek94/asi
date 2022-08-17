@@ -8,6 +8,10 @@
                   ####################################################################################################
 
 #!/bin/bash
+#https://linuxhint.com/install_openoffice_ubuntu_1804/
+#insatll ssh 
+#change admin password
+#change correct name
 #Abhishek  Gohil
 echo ""
 echo  -e "\e[31;43m*****ASI-Automatic Software Installation By Abhishek Gohil W84459 - DELHIVERY *****\e[0m"
