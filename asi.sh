@@ -23,17 +23,63 @@ echo ""
 date
 echo  -e "\e[3;43m*************** Software is Not Completed - i'm Working on my offtime ***************\e[0m"
 echo ""
-echo  -e "\e[31;43m*****************Note : To stop The Script Press Ctrl + C or Ctrl + D *****************\e[0m"
-PS3='Please enter your choice : '
-options=("Ubuntu Full Audit" "System Information" "Edit Hostname" "Automatic Offline Software Installation" "Automatic Online Software Installation" "Mannual Software Installation" "Custom Audit" "Connect to Windows Server" "Reset Ubuntu Setting" "Repair Software/Reinstallation" "RemoveTemp" "Repair Wi-fi" "Wifi Rights to standard users" "Install Wifi Driver" "Uninstall All Software" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
-select opt in "${options[@]}"
-do
+echo  -e "\e[31;43m*********Note : To stop The Script Press Ctrl + C or Ctrl + D *********\e[0m"
+### Colors ##
+ESC=$(printf '\033') RESET="${ESC}[0m" BLACK="${ESC}[30m" RED="${ESC}[31m"
+GREEN="${ESC}[32m" YELLOW="${ESC}[33m" BLUE="${ESC}[34m" MAGENTA="${ESC}[35m"
+CYAN="${ESC}[36m" WHITE="${ESC}[37m" DEFAULT="${ESC}[39m"
+
+### Color Functions ##
+
+greenprint() { printf "${GREEN}%s${RESET}\n" "$1"; }
+blueprint() { printf "${BLUE}%s${RESET}\n" "$1"; }
+redprint() { printf "${RED}%s${RESET}\n" "$1"; }
+yellowprint() { printf "${YELLOW}%s${RESET}\n" "$1"; }
+magentaprint() { printf "${MAGENTA}%s${RESET}\n" "$1"; }
+cyanprint() { printf "${CYAN}%s${RESET}\n" "$1"; }
+fn_goodafternoon() { echo; echo "Good afternoon."; }
+fn_goodmorning() { echo; echo "Good morning."; }
+fn_bye() { echo "Bye bye."; exit 0; }
+fn_fail() { echo "Wrong option." exit 1; }
+
+mainmenu() {
+echo -ne "
+$(magentaprint 'MAIN MENU')
+$(greenprint '1)') Ubuntu Full Audit
+$(greenprint '2)') System Information
+$(greenprint '3)') Edit Hostname
+$(greenprint '4)') Automatic Offline Software Installation
+$(redprint '5)') Automatic Online Software Installation
+$(greenprint '6)') Mannual Software Installation
+$(redprint '7)') Custom Audit
+$(redprint '8)') Connect to Windows Server
+$(greenprint '9)') Reset Ubuntu Setting
+$(redprint '10)') Repair Software/Reinstallation
+$(redprint '11)') RemoveTemp
+$(greenprint '12)') Repair Wi-fi
+$(greenprint '13)') Allow Wifi for Standard User
+$(greenprint '14)') Install Wifi Driver
+$(greenprint '15)') Remove Unnecessary/Unwanted Software
+$(greenprint '16)') HP printer & Scanner Driver
+$(greenprint '17)') Barcode Printer Driver
+$(greenprint '18)') Repair User
+$(redprint '19)') Download Software
+$(greenprint '20)') asi Update
+$(redprint 'Exit)')
+Please enter your choice : "
+read -r opt
+
     case $opt in
-        "Ubuntu Full Audit")
+        											 1)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
+clear
 # -Hostname information:
 echo -e "\e[31;43m***** HOSTNAME INFORMATION *****\e[0m"
 hostnamectl
+echo ""
+# -Mac Address information:
+echo -e "\e[31;43m***** MAC Address INFORMATION *****\e[0m"
+ip -o link show | cut -d " " -f 2,20
 echo ""
 # -System and Serial Number information:
 echo -e "\e[31;43m***** SYSTEM AND SERIAL NUMBER INFORMATION *****\e[0m"
@@ -53,21 +99,9 @@ echo ""
 echo -e "\e[31;43m*****KASPERSKY ANTIVIRUS ACTIVATION - STATUS *****\e[0m"
 kesl-control -L --query
 echo ""
-# -File system disk space usage:
-echo -e "\e[31;43m***** FILE SYSTEM DISK SPACE USAGE *****\e[0m"
-df -h
-echo ""
 # -Free and used memory in the system:
 echo -e "\e[31;43m ***** FREE AND USED MEMORY *****\e[0m"
 free -m
-echo ""
-# -System uptime and load:
-echo -e "\e[31;43m***** SYSTEM UPTIME AND LOAD *****\e[0m"
-uptime
-echo ""
-# -Logged-in users:
-echo -e "\e[31;43m***** CURRENTLY LOGGED-IN USERS *****\e[0m"
-who
 echo ""
 # -Top 5 processes as far as memory usage is concerned
 echo -e "\e[31;43m***** TOP 5 MEMORY-CONSUMING PROCESSES *****\e[0m"
@@ -77,17 +111,19 @@ echo ""
 # -Top 5 processes as far as memory usage is concerned
 echo -e "\e[31;43m***** Details of Current DNS Server  *****\e[0m"
 systemd-resolve --status | grep -B 9 -A 6 "Current DNS Server"
+# Check Logged In Users
+who>/tmp/who
+echo -e "\E[11;42m Logged In users :\e[0m" $tecreset && cat /tmp/who
 echo ""
 echo -e "\e[1;32mCreated by Abhishek Gohil (W84459) \e[0m"
 exit
             ;;
-        "System Information" )
+        											 2)
          echo "you chose choice $REPLY which is $opt.Please Wait...!"
          # unset any variable which system may be using
 
 # clear the screen
 clear
-
 unset tecreset os architecture kernelrelease internalip externalip nameserver loadaverage
 
 while getopts iv name
@@ -174,7 +210,10 @@ cat /tmp/ramcache | grep -v "Mem"
 df -h| grep 'Filesystem\|/dev/sda*' > /tmp/diskusage
 echo -e '\E[32m'"Disk Usages :" $tecreset
 cat /tmp/diskusage
-
+# -File system disk space usage:
+echo -e "\e[31;43m***** FILE SYSTEM DISK SPACE USAGE *****\e[0m"
+df -h
+echo ""
 # Check Load Average
 loadaverage=$(uptime | cut -d ':' -f 5-)
 echo -e '\E[32m'"Load Average :" $tecreset $loadaverage
@@ -182,7 +221,14 @@ echo -e '\E[32m'"Load Average :" $tecreset $loadaverage
 # Check System Uptime
 tecuptime=$(uptime | awk '{print $3,$4}' | cut -f1 -d,)
 echo -e '\E[32m'"System Uptime Days/(HH:MM) :" $tecreset $tecuptime
-
+# -System uptime and load:
+echo -e "\e[31;43m***** SYSTEM UPTIME AND LOAD *****\e[0m"
+uptime
+echo ""
+# -Logged-in users:
+echo -e "\e[31;43m***** CURRENTLY LOGGED-IN USERS *****\e[0m"
+who
+echo ""
 # Unset Variables
 unset tecreset os architecture kernelrelease internalip externalip nameserver loadaverage
 
@@ -193,7 +239,7 @@ fi
 shift $(($OPTIND -1))
  exit
         ;;
-                 "Edit Hostname" )
+        											 3)
             echo "you chose choice $REPLY which is $opt."
 #Author: Abhishek Gohil
 #Assign existing hostname to $hostn
@@ -224,7 +270,7 @@ fi
 #END
 exit
             ;;
-        "Automatic Offline Software Installation")
+        											 4)
             echo "you chose choice $REPLY which is $opt.Please Wait...!"
 #!/bin/bash
 sudo apt remove anydesk -y
@@ -256,14 +302,15 @@ sudo dpkg -i wps*.deb
 sudo apt-get install -f -y
 chmod +x klnagent*.sh
 ./klnagent*.sh
-cd /opt/kaspersky/klnagent64/bin
-sudo ./klnagchk
-cd /home/delhivery/
+sleep 5
+/opt/kaspersky/klnagent64/bin/./klnagchk
+sleep 5
 sudo dpkg -i kesl_11.2.0-4528_amd64.deb
+sleep 5
 /opt/kaspersky/kesl/bin/kesl-setup.pl
-
-#################################################################################################################33
-kesl-control -L --query
+sleep 5
+yes Y | kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG 
+sleep 5
 #wget
 tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
 tar -xvf LinuxSoftware_E1000_v4.2.1.x86_64.deb.tar.gz
@@ -279,7 +326,19 @@ sudo apt update --fix-missing
 sudo apt --fix-broken install
 apt-get update 
 cd /home/administrator/Desktop
-
+wget https://delhivery-it-docs-cdn.delhivery.com/DesktopCentral_LinuxAgent.bin 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA-Server.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json  
+sleep 5 
+chmod 777 DesktopCentral_LinuxAgent.bin
+./DesktopCentral_LinuxAgent.bin
+#chmod +x Ubuntu\ \(1\).sh
+#chmod +x Ubuntu.sh
+#./Ubuntu\ \(1\).sh
 #################################################################################################################
 #echo "Stop Bluetooth"
 #sudo systemctl disable bluetooth
@@ -325,16 +384,16 @@ fi
 
 exit
               ;;
-        "Automatic Online Software Installation")
+        											 5)
             echo "you chose choice $REPLY which is $opt.Please Wait...!"
 
   
             ;;
             
-        "Mannual Software Installation" )
+        											 6)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
             PS4='Please enter your choice for Mannual Software Installation : '
-options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine" "Kaspersky Antivirus" "Remove Temp" "Repair Wi-fi" "Repair User" "Download Software" "Find/Remove Unwanted Software" "asi Update")
+options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine" "Kaspersky Antivirus" "Open Office" "back to home")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -390,11 +449,20 @@ else
 fi
 exit
             ;;
-             "ME - Manage Engine")
+              "ME - Manage Engine")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 	    apt-get update 
-#################################################################################################################33
-
+cd /home/administrator/Desktop
+wget https://delhivery-it-docs-cdn.delhivery.com/DesktopCentral_LinuxAgent.bin 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA-Server.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json  
+sleep 5 
+chmod 777 DesktopCentral_LinuxAgent.bin
+./DesktopCentral_LinuxAgent.bin
 
     echo "" 
     echo  -e "\e[31;43m*****me installed*****\e[0m"	    
@@ -403,28 +471,26 @@ exit
             ;;
              "Kaspersky Antivirus")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-#################################################################################################################33
-
+chmod +x /home/Administrator/klnagent*.sh
+chmod +x /home/administrator/klnagent*.sh
+chmod +x /home/Delhivery/klnagent*.sh
+chmod +x /home/delhivery/klnagent*.sh
+chmod +x klnagent*.sh
+./klnagent*.sh
+/opt/kaspersky/klnagent64/bin/klnagchk
+#cd /home/Administrator/
+sudo dpkg -i kesl_11.2.0-4528_amd64.deb
+/opt/kaspersky/kesl/bin/kesl-setup.pl
+kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG
+kesl-control -L --query
+            exit
             ;;
-             "HP printer & Scanner Driver")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-	    sudo apt install apparmor-utils
-sudo aa-disable /usr/share/hplip/plugin.py
-hp-plugin
-	    exit
-            ;;
-             "Barcode Printer Driver")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
-tar -xvf barcodedriver*.tar.gz
-tar -xvf LinuxSoftware_E1000_v4.2.1.x86_64.deb.tar.gz
-cd barcodedriver-1.2.06
-chmod +x install-driver uninstall-driver
-./uninstall-driver
-./install-driver
-exit
-            ;;
+             
             "Open Office")
+            ;;
+            "back to home")
+            ./asi.sh
+            
             break
 exit
 exit
@@ -435,33 +501,33 @@ done
 
 exit
             ;;
-        "Custom Audit")
+        											 7)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-nohup rdesktop -f 192.168.1.100 &>/dev/null &
+echo "Custom audit not built"
 exit
             ;;
-      "Connect to Windows Server")
+        											 8)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 nohup gedit &>/dev/null &
 exit
 
             ;;
-      "Reset Ubuntu Setting")
+        											 9)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 sudo dconf reset -f /
 exit
 ;;
-        "Repair Software/Reinstallation")
+        											 10)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 kill -9 -1
 
             ;;
-            "RemoveTemp")
+        											 11)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 
 exit
             ;;
- "Repair Wi-fi")
+        											 12)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 
 echo "asking for a administrator password while connect to wifi in ubuntu- Ubutnu Admin System policy
@@ -490,7 +556,7 @@ Step 8 : Reboot the system is optional."
 
 exit
             ;;
-           "Give Wifi Rights for standard users")
+        											 13)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 ls /sys/class/net
 echo "####################"
@@ -507,7 +573,7 @@ sudo adduser delhivery netdev
  exit           
             ;;
            
-           "Install Wifi Driver")
+        											 14)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 apt-get update
 apt-get install mokutil && mokutil --sb-state
@@ -533,26 +599,54 @@ sudo update-grub
 init 6
  
             ;;
-           "Uninstall All Software")
+        											 15)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-  
-           sudo apt remove anydesk -y
-sudo apt purge anydesk firefox rhythmbox teamviewer chromium* -y
-sudo apt-get remove --purge libreoffice*
+            
+sudo apt-get purge -y firefox
+            rm -rf ~/.mozilla
+            rm -rf ~/.mozilla/firefox/
+            sudo apt-get purge rhythmbox -y
+sudo apt-get purge -y teamviewer -y
+sudo apt-get purge -y rhythmbox firefox aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel
+sudo apt-get remove --purge -y rhythmbox firefox aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel
+sudo apt remove -y aisleriot
+sudo apt-get remove --purge -y libreoffice* thunderbird*
+sudo apt remove -y rhythmbox thunderbird* whatsapp telegram 
 sudo apt-get clean -y
-sudo apt-get remove fonts-opensymbol libreoffice libreoffice-\* openoffice.org-dtd-officedocument1.0 python\*-uno uno-libs3-\* ure ure-dbg -y
+sudo apt-get -y purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy
+sudo apt-get purge --auto-remove -y gnome-mahjongg
+sudo apt-get purge --auto-remove -y gnome-mines
+sudo apt-get remove -y fonts-opensymbol libreoffice libreoffice-\* openoffice.org-dtd-officedocument1.0 python\*-uno uno-libs3-\* ure ure-dbg
+sudo apt purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel && sudo apt autoremove
+sudo apt purge gnome-2048 aisleriot atomix gnome-chess five-or-more hitori iagno gnome-klotski lightsoff gnome-mahjongg gnome-mines gnome-nibbles quadrapassel four-in-a-row gnome-robots gnome-sudoku swell-foop tali gnome-taquin gnome-tetravex -y & sudo apt autoremove -y
+sudo apt-get purge gnome-games-common gbrainy && sudo apt-get autoremove
 sudo apt-get remove --purge libreoffice-core -y
 sudo apt-get remove libreoffice-core -y
 sudo apt purge -y libreoffice*
-sudo apt-get remove --purge -y libreoffice*
-sudo apt purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel -y
 sudo apt-get autoremove -y
 sudo apt autoremove -y
 sudo apt update -y
             exit           
             ;;
-            
-    "ssh")
+        											 16)
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+	    sudo apt install apparmor-utils
+sudo aa-disable /usr/share/hplip/plugin.py
+hp-plugin
+	    exit
+            ;;
+        											 17)
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
+tar -xvf barcodedriver*.tar.gz
+tar -xvf LinuxSoftware_E1000_v4.2.1.x86_64.deb.tar.gz
+cd barcodedriver-1.2.06
+chmod +x install-driver uninstall-driver
+./uninstall-driver
+./install-driver
+exit
+            ;;
+        											 18)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 sudo cat > /etc/ssh/sshd_config << EOF
 # Package generated configuration file
@@ -649,7 +743,7 @@ sudo service ssh restart
 exit
             ;;
        
-        "Find User")
+        											 19)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 
 echo "Please Enter a User ID Number : "
@@ -664,7 +758,7 @@ fi
 
 exit
             ;;
-        "SSH CHECKING")
+        											 20)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 
 #Plugin for checking if the SSH service is running
@@ -727,7 +821,9 @@ exit
             ;;
         *) echo "invalid option $REPLY";;
     esac
-done
+    
+}
 
+mainmenu
 #rdesktop -f ip
 #press enter to connect
