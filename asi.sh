@@ -340,6 +340,9 @@ wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json
 sleep 5 
 chmod 777 DesktopCentral_LinuxAgent.bin
 ./DesktopCentral_LinuxAgent.bin
+sleep 5
+#sudo chmod -x /etc/update-motd.d/90-updates-available
+sudo chmod -x /etc/update-motd.d/91-release-upgrade
 #chmod +x Ubuntu\ \(1\).sh
 #chmod +x Ubuntu.sh
 #./Ubuntu\ \(1\).sh
