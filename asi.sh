@@ -1,18 +1,17 @@
                   ####################################################################################################
                   #                                           asi.sh                                                 #
-                  # Written for Delhivery for the more Details Contact Abhishek(Surat)                               #
+                  # Written for DELHIVERY LTD. for the more Details Contact Abhishek(Surat)                          #
                   # If you find a bug, please notify us via the email address provided below.                        #
-		  # it.abhishek94@gmail.com                                                                          #
+		  # Email : it.abhishek94@gmail.com                                                                  #
                   # giving proper credit to Abhishek Gohil from Delhivery IT Team                                    #
-                  #                                       "Thank You..."                                             #
+                  #                                       "Thank You...!"                                            #
                   ####################################################################################################
 
 #!/bin/bash
 #https://linuxhint.com/install_openoffice_ubuntu_1804/
-#insatll ssh 
+#install ssh 
 #change admin password
-#change correct name
-#Abhishek  Gohil
+#change correct name for admin
 echo ""
 echo  -e "\e[31;43m*****ASI-Automatic Software Installation By Abhishek Gohil W84459 - DELHIVERY *****\e[0m"
 echo ""
@@ -399,107 +398,7 @@ exit
             
         											 6)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-            PS4='Please enter your choice for Mannual Software Installation : '
-options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine" "Kaspersky Antivirus" "Open Office" "back to home")
-select opt in "${options[@]}"
-do
-    case $opt in
-        "Chrome-Stable")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-if [ -f google-chrome*.deb ]; then
-    echo "file exists."
-    sudo dpkg -i google-chrome-stable_current_amd64.deb
-else 
-    echo "" 
-    echo  -e "\e[31;43m*****google-chrome deb file not found in Home Directory.Please Check file in Home Directory and try again*****\e[0m"
-fi
-
-            exit
-            ;;
-               "Latest Chrome")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!" 
-nohup gedit &>/dev/null &
-exit
-
-            ;;
-        "WPS-Stable Office")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-if [ -f wps*.deb ]; then
-    echo "file exists."
-    sudo sudo dpkg -i wps*.deb
-else 
-    echo "" 
-    echo  -e "\e[31;43m*****wps office deb file not found in Home Directory.Please Check file in Home Directory and try again*****\e[0m"
-fi
-            ;;
-            
-        "Latest WPS Office")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-kill -9 -1
-
-            ;;
-            "Anydesk")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-if [ -f anydesk*.deb ]; then
-    echo "file exists."
-sudo apt remove anydesk -y
-sudo apt purge anydesk -y
-wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
-echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
-sudo apt update
-sudo dpkg -i anydesk*.deb
-sudo apt install -f -y
-sudo apt-get install -f -y
-else 
-    echo "" 
-    echo  -e "\e[31;43m*****Anydesk deb file not found in Home Directory.Please Check file in Home Directory and try again*****\e[0m"
-fi
-exit
-            ;;
-              "ME - Manage Engine")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-	    apt-get update 
-cd /home/administrator/Desktop
-wget https://delhivery-it-docs-cdn.delhivery.com/DesktopCentral_LinuxAgent.bin 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA.crt 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA-Server.crt 
-sleep 5 
-wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json  
-sleep 5 
-chmod 777 DesktopCentral_LinuxAgent.bin
-./DesktopCentral_LinuxAgent.bin
-
-    echo "" 
-    echo  -e "\e[31;43m*****me installed*****\e[0m"	    
-exit
-
-            ;;
-             "Kaspersky Antivirus")
-            echo "you chose choice $REPLY which is $opt. Please Wait...!"
-chmod +x /home/Administrator/klnagent*.sh
-chmod +x /home/administrator/klnagent*.sh
-chmod +x /home/Delhivery/klnagent*.sh
-chmod +x /home/delhivery/klnagent*.sh
-chmod +x klnagent*.sh
-./klnagent*.sh
-/opt/kaspersky/klnagent64/bin/klnagchk
-#cd /home/Administrator/
-sudo dpkg -i kesl_11.2.0-4528_amd64.deb
-/opt/kaspersky/kesl/bin/kesl-setup.pl
-kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG
-kesl-control -L --query
-            exit
-            ;;
-             
-            "Open Office")
-            ;;
-            "back to home")
-            ./asi.sh
-            
-            break
-exit
+           ###########################################################################################################################################
 exit
             ;;
         *) echo "invalid option $REPLY";;
@@ -608,31 +507,30 @@ init 6
             ;;
         											 15)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-            
-sudo apt-get purge -y firefox
+            sudo apt-get purge -y firefox
             rm -rf ~/.mozilla
             rm -rf ~/.mozilla/firefox/
             sudo apt-get purge rhythmbox -y
-sudo apt-get purge -y teamviewer -y
-sudo apt-get purge -y rhythmbox firefox aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel
-sudo apt-get remove --purge -y rhythmbox firefox aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel
-sudo apt remove -y aisleriot
-sudo apt-get remove --purge -y libreoffice* thunderbird*
-sudo apt remove -y rhythmbox thunderbird* whatsapp telegram 
-sudo apt-get clean -y
-sudo apt-get -y purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy
-sudo apt-get purge --auto-remove -y gnome-mahjongg
-sudo apt-get purge --auto-remove -y gnome-mines
-sudo apt-get remove -y fonts-opensymbol libreoffice libreoffice-\* openoffice.org-dtd-officedocument1.0 python\*-uno uno-libs3-\* ure ure-dbg
-sudo apt purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel && sudo apt autoremove
-sudo apt purge gnome-2048 aisleriot atomix gnome-chess five-or-more hitori iagno gnome-klotski lightsoff gnome-mahjongg gnome-mines gnome-nibbles quadrapassel four-in-a-row gnome-robots gnome-sudoku swell-foop tali gnome-taquin gnome-tetravex -y & sudo apt autoremove -y
-sudo apt-get purge gnome-games-common gbrainy && sudo apt-get autoremove
-sudo apt-get remove --purge libreoffice-core -y
-sudo apt-get remove libreoffice-core -y
-sudo apt purge -y libreoffice*
-sudo apt-get autoremove -y
-sudo apt autoremove -y
-sudo apt update -y
+		sudo apt-get purge -y teamviewer -y
+		sudo apt-get purge -y rhythmbox firefox aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel
+		sudo apt-get remove --purge -y rhythmbox firefox aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel
+		sudo apt remove -y aisleriot
+		sudo apt-get remove --purge -y libreoffice* thunderbird*
+		sudo apt remove -y rhythmbox thunderbird* whatsapp telegram 
+		sudo apt-get -y purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy
+		sudo apt-get purge --auto-remove -y gnome-mahjongg
+		sudo apt-get purge --auto-remove -y gnome-mines
+		#sudo apt-get remove -y fonts-opensymbol libreoffice libreoffice-\* openoffice.org-dtd-officedocument1.0 python\*-uno uno-libs3-\* ure ure-dbg
+		sudo apt purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel 
+		sudo apt purge gnome-2048 aisleriot atomix gnome-chess five-or-more hitori iagno gnome-klotski lightsoff gnome-mahjongg gnome-mines gnome-nibbles quadrapassel four-in-a-row gnome-robots gnome-sudoku swell-foop tali gnome-taquin gnome-tetravex -y & sudo apt autoremove -y
+		sudo apt-get purge gnome-games-common gbrainy -y
+		sudo apt-get remove --purge libreoffice-core -y
+		sudo apt-get remove libreoffice-core -y
+		sudo apt purge -y libreoffice*
+		sudo apt-get clean -y
+		sudo apt-get autoremove -y
+		sudo apt autoremove -y
+		sudo apt update -y
             exit           
             ;;
         											 16)
