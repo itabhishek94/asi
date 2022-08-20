@@ -2,6 +2,8 @@
 
 ######## Windows Software Links ############# :
 
+NOTE : DO NOT CLICK ON THE LINK DIRECTLY. COPY THE LINK AND PASTE IT INTO YOUR BROWSER , OTHERWISE THE LINK IS BLOCKED BY FIREWALL. 
+
 WPS OFFICE
 https://files02.tchspt.com/temp/WPSOffice_11.2.0.11191.exe
 https://www.wps.com/download/
