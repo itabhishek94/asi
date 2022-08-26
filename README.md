@@ -35,6 +35,12 @@ https://drive.google.com/drive/u/0/folders/1NUa7CEQeLEAfoTy8ck8p09cHkuR4y97J
 CCTV Software :
 https://www.hikvision.com/en/support/tools/hitools/cl48d38819384ddd2e/
 
+Kodak i1150 Driver : Windows/Linux/Mac
+https://www.kodakdriver.com/kodak-scanmate-i1150-driver/
+
+Delhivery Scanner Driver [ google drive Link ] - Only delhivery user can access.
+https://drive.google.com/drive/u/0/my-drive
+
 All Printer and Scanner driver: Required Signup/Login
 https://terabox.com/s/1XPQbW_DHEo69BZWXxbV1oQ
 
