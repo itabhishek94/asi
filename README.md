@@ -20,8 +20,11 @@ https://www.seagullscientific.com/downloads/printer-drivers/zenpert-4t520/
 Thermal printer ZEBRA
 https://www.seagullscientific.com/downloads/printer-drivers/zebra-gc420t-zpl/
 
-Hp M1136 Printer Driver :
+Hp MFP M1136 Printer Driver :
 https://printerdrivers.com/hp-laserjet-pro-m1136-mfp-drivers-download/
+
+HP MFP M127fn
+https://ftp.ext.hp.com/pub/softlib/software13/printers/LES/M127/LJPro_MFP_M127-M128_full_solution_15310.exe
 
 Rufus Bootable software Link :
 https://www.silentdragon.com/download/Rufus/
