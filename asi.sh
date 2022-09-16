@@ -250,7 +250,7 @@ shift $(($OPTIND -1))
 hostn=$(cat /etc/hostname)
 
 #Display existing hostname
-echo "Existing hostname is $hostn"
+echo -ne "$(greenprint 'Existing hostname is ')\e[31;43m $hostn \e[0m"
 
 #Ask for new hostname $newhost
 echo "Enter new hostname: "
@@ -261,15 +261,10 @@ sudo sed -i "s/$hostn/$newhost/g" /etc/hosts
 sudo sed -i "s/$hostn/$newhost/g" /etc/hostname
 
 #display new hostname
-echo "Your new hostname is $newhost"
-
-read -p "Press y key to reboot or n for exit $foo? [yn]" answer
-if [ $answer = y ] ; then
-#Press a key to reboot
-sudo reboot
- else
-  exit
-fi
+echo " "
+echo "Hostname changed successfully. "
+echo " "
+echo -ne "$(greenprint 'Your new hostname is ')\e[31;43m $newhost \e[0m"
 #read -s -n 1 -p "Press any key to reboot"
 #END
 exit
@@ -300,7 +295,7 @@ echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/a
 sudo apt update
 sudo dpkg -i anydesk*.deb
 sudo apt install -f -y
-sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome*.deb
 sudo dpkg -i wps*.deb
 #sudo snap install wps-office
 sudo apt-get install -f -y
@@ -393,7 +388,111 @@ exit
               ;;
         											 5)
             echo "you chose choice $REPLY which is $opt.Please Wait...!"
+#!/bin/bash
+sudo apt remove anydesk -y
+sudo apt-get autoremove -y
+sudo apt autoremove -y
+sudo apt update -y
+sudo apt-get install build-essential net-tools -y
+#sudo apt-get install libaio1 default-jdk openssh-server ssh libpango1.0-0 dpkg-dev libgtkglext1 -y
+sudo apt update --fix-missing -y
+sudo apt --fix-broken install -y
+sudo apt list --upgradable -y
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
+sudo apt update
+sudo dpkg -i anydesk*.deb
+sudo apt install -f -y
+sudo dpkg -i google-chrome*.deb
+sudo dpkg -i wps*.deb
+#sudo snap install wps-office
+sudo apt-get install -f -y
+chmod +x klnagent*.sh
+./klnagent*.sh
+sleep 5
+/opt/kaspersky/klnagent64/bin/./klnagchk
+sleep 5
+sudo dpkg -i kesl_11.2.0-4528_amd64.deb
+sleep 5
+/opt/kaspersky/kesl/bin/kesl-setup.pl
+sleep 5
+yes Y | kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG 
+sleep 5
+#wget
+tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
+tar -xvf LinuxSoftware_E1000_v4.2.1.x86_64.deb.tar.gz
+cd barcodedriver-1.2.06
+chmod +x install-driver uninstall-driver
+./install-driver
+cd ..
+chmod +x setup.sh
+#./setup.sh
+#dpkg -i kodak*.deb
+#dpkg -i lib*.deb
+sudo apt update --fix-missing
+sudo apt --fix-broken install
+apt-get update 
+cd /home/administrator/Desktop
+wget https://delhivery-it-docs-cdn.delhivery.com/DesktopCentral_LinuxAgent.bin 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/DMRootCA-Server.crt 
+sleep 5 
+wget https://delhivery-it-docs-cdn.delhivery.com/serverinfo.json  
+sleep 5 
+chmod 777 DesktopCentral_LinuxAgent.bin
+./DesktopCentral_LinuxAgent.bin
+sleep 5
+#sudo chmod -x /etc/update-motd.d/90-updates-available
+sudo chmod -x /etc/update-motd.d/91-release-upgrade
+#chmod +x Ubuntu\ \(1\).sh
+#chmod +x Ubuntu.sh
+#./Ubuntu\ \(1\).sh
+#################################################################################################################
+#echo "Stop Bluetooth"
+#sudo systemctl disable bluetooth
+#sudo systemctl stop bluetooth
+#sudo rfkill block bluetooth
+#sudo /etc/init.d/bluetooth stop
+#echo "Bluetooth Disabled.!!"
 
+#sudo mv /etc/init/bluetooth.conf /etc/init/bluetooth.conf.disabled
+#echo "Bluetooth permanently disabled successfully.!!!"
+
+#bluetooth re-enable
+#sudo mv /etc/init/bluetooth.conf.disabled /etc/init/bluetooth.conf
+#echo "Bluetooth re-enabled successfully.!!!"
+
+#need display timeout setting and battary setting
+#ssh install
+#lpadmin -p printername -E -v socket://11.22.33.44 -m drv:///sample.drv/laserjet.ppd
+# lpadmin -p printer1 -n /path/mynewHPppdfile.ppd
+#wget https://download.anydesk.com/linux/anydesk_6.1.1-1_amd64.deb
+#sudo dpkg -i anydesk*.deb
+#wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install -f -y
+#https://www.cups.org/doc/admin.html
+# Am i Root user?
+if [ $(id -u) -eq 0 ]; then
+username=delhivery
+password=Welcome@123
+	egrep "^$username" /etc/passwd >/dev/null
+	if [ $? -eq 0 ]; then
+		echo "$username exists!"
+		exit 1
+	else
+		pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+		useradd -m -p "$pass" "$username"
+        sudo adduser delhivery netdev
+		[ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
+	fi
+else
+	echo "Only root may add a user to the system."
+	exit 2
+fi
+
+exit
   
             ;;
             
