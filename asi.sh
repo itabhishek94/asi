@@ -49,16 +49,16 @@ fn_fail() { echo "Wrong option." exit 1; }
 mainmenu() {
 echo -ne "
 $(magentaprint 'MAIN MENU')
-$(greenprint '1)') Ubuntu Full Audit
+$(greenprint '1)') Ubuntu Audit
 $(greenprint '2)') System Information
-$(greenprint '3)') Edit Hostname
-$(greenprint '4)') Automatic Offline Software Installation
-$(redprint '5)') Automatic Online Software Installation
+$(greenprint '3)') Rename Hostname
+$(greenprint '4)') Automatic Software Installation-Offline Mode
+$(redprint '5)') Automatic Software Installation-Online Mode
 $(greenprint '6)') Mannual Software Installation
-$(redprint '7)') Custom Audit
-$(redprint '8)') Connect to Windows Server
+$(redprint '7)') Mannual Software Uninstallation
+$(redprint '8)') Remote to Windows Server
 $(greenprint '9)') Reset Ubuntu Setting
-$(redprint '10)') Repair Software/Reinstallation
+$(redprint '10)') Debug Application
 $(redprint '11)') RemoveTemp
 $(greenprint '12)') Repair Wi-fi
 $(greenprint '13)') Allow Wifi for Standard User
@@ -68,7 +68,7 @@ $(greenprint '16)') HP printer & Scanner Driver
 $(greenprint '17)') Barcode Printer Driver
 $(greenprint '18)') Repair User
 $(redprint '19)') Download Software
-$(greenprint '20)') asi Update
+$(greenprint '20)') Update ASI Script
 $(redprint 'Exit)')
 Please enter your choice : "
 read -r opt
