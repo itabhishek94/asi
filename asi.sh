@@ -499,7 +499,7 @@ exit
         											 6)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
             PS4='Please enter your choice for Mannual Software Installation : '
-options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine" "Kaspersky Antivirus" "Open Office" "back to home")
+options=("Chrome-Stable" "Latest Chrome" "WPS-Stable Office" "Latest WPS Office" "Anydesk" "ME - Manage Engine" "Kaspersky Antivirus" "Open Office" "back to home" "Fresh Installation" "Reinstallation" "Troubleshoot Driver Solution 1" "Advance Troubleshoot"  "Uninstallation"  "Check Existing Driver Information")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -596,7 +596,7 @@ kesl-control -L --query
             ;;
             "back to home")
             ./asi.sh
-            
+              ;;
 	     "Fresh Installation")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 sudo apt update
@@ -606,6 +606,7 @@ sudo apt install hplip hplip-gui
 sudo usermod -aG lpadmin delhivery
 hp-setup
 hp-plugin
+  ;;
  "Reinstallation")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 apt remove hplip-data hplip hplip-gui -y
@@ -621,6 +622,7 @@ sudo apt install hplip hplip-gui
 sudo usermod -aG lpadmin delhivery
 hp-setup
 hp-plugin
+  ;;
  "Troubleshoot Driver Solution 1")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 # Linux all devices on the network:
@@ -631,7 +633,7 @@ hp-probe -busb -escan
 hp-probe -bcups
 # Try to search all devices on the USB bus:
 hp-probe
-
+  ;;
  "Advance Troubleshoot")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 apt remove hplip-data hplip hplip-gui -y
@@ -640,11 +642,12 @@ rm -rf hplip*.run
 wget https://developers.hp.com/sites/default/files/hplip-3.20.11-plugin.run
 chmod +x hplip-3*.run
 ./hplip-3*run
-
+  ;;
  "Uninstallation")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 apt remove hplip-data hplip hplip-gui -y
 apt purge hplip-data hplip hplip-gui -y
+  ;;
  "Check Existing Driver Information")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 apt-cache search hplip
