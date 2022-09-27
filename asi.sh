@@ -58,7 +58,7 @@ $(greenprint '6)') Mannual Software Installation-Offline Mode
 $(redprint '7)') Mannual Software Uninstallation
 $(redprint '8)') Remote to Windows Server
 $(greenprint '9)') Reset Ubuntu Setting
-$(redprint '10)') Debug Application
+$(redprint '10)') Debug Application & Driver
 $(redprint '11)') Remove Temp and Reset
 $(greenprint '12)') Repair Wired & Wireless Connection
 $(greenprint '13)') Allow Wifi Access for Standard User
@@ -682,11 +682,82 @@ sudo dconf reset -f /
 exit
 ;;
         											 10)
+              echo "you chose choice $REPLY which is $opt. Please Wait...!"
+            PS4='Please enter your choice for repair software or driver : '
+options=("Fresh Installation" "Reinstallation" "Troubleshoot Driver Solution 1" "Advance Troubleshoot"  "Uninstallation"  "Check Existing Driver Information" "back to home")
+select opt in "${options[@]}"
+do
+    case $opt in
+            "Fresh Installation")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-kill -9 -1
-
+sudo apt update
+sudo apt upgrade
+sudo add-apt-repository universe
+sudo apt install hplip hplip-gui
+sudo usermod -aG lpadmin delhivery
+hp-setup
+hp-plugin
+  ;;
+ "Reinstallation")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+apt remove hplip-data hplip hplip-gui -y
+apt purge hplip-data hplip hplip-gui -y
+sudo apt install python-is-python3 -y
+sudo apt install libavahi-core-dev -y
+apt-get --reinstall install cups -y
+sudo usermod -aG lpadmin delhivery
+sudo apt update
+sudo apt upgrade
+sudo add-apt-repository universe
+sudo apt install hplip hplip-gui
+sudo usermod -aG lpadmin delhivery
+hp-setup
+hp-plugin
+  ;;
+ "Troubleshoot Driver Solution 1")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+# Linux all devices on the network:
+hp-probe -bnet
+# Search all devices on USB that support scanning:
+hp-probe -busb -escan
+# Search and list all devices that have queues installed in CUPS:
+hp-probe -bcups
+# Try to search all devices on the USB bus:
+hp-probe
+  ;;
+ "Advance Troubleshoot")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+apt remove hplip-data hplip hplip-gui -y
+apt purge hplip-data hplip hplip-gui -y
+rm -rf hplip*.run
+wget https://developers.hp.com/sites/default/files/hplip-3.20.11-plugin.run
+chmod +x hplip-3*.run
+./hplip-3*run
+  ;;
+ "Uninstallation")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+apt remove hplip-data hplip hplip-gui -y
+apt purge hplip-data hplip hplip-gui -y
+  ;;
+ "Check Existing Driver Information")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+apt-cache search hplip
+cat /etc/lsb-release && uname -ir && groups && lsusb 
+dpkg -l | grep hplip
+resolvectl status
+	  ;;
+            "back to home")
+            ./asi.sh
+            break
+exit
+exit
             ;;
-        											 11)
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
+exit
+            ;;										 11)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 
 exit
@@ -775,7 +846,7 @@ sudo apt-get purge -y rhythmbox firefox aisleriot gnome-sudoku mahjongg ace-of-p
 sudo apt-get remove --purge -y rhythmbox firefox aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel
 sudo apt remove -y aisleriot
 sudo apt-get remove --purge -y libreoffice* thunderbird*
-sudo apt remove -y rhythmbox thunderbird* whatsapp telegram 
+sudo apt remove -y rhythmbox thunderbird* whatsapp telegram pacman
 sudo apt-get clean -y
 sudo apt-get -y purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy
 sudo apt-get purge --auto-remove -y gnome-mahjongg
