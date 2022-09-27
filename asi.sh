@@ -54,21 +54,21 @@ $(greenprint '2)') System Information
 $(greenprint '3)') Rename Hostname
 $(greenprint '4)') Automatic Software Installation-Offline Mode
 $(redprint '5)') Automatic Software Installation-Online Mode
-$(greenprint '6)') Mannual Software Installation
+$(greenprint '6)') Mannual Software Installation-Offline Mode
 $(redprint '7)') Mannual Software Uninstallation
 $(redprint '8)') Remote to Windows Server
 $(greenprint '9)') Reset Ubuntu Setting
 $(redprint '10)') Debug Application
-$(redprint '11)') RemoveTemp
-$(greenprint '12)') Repair Wi-fi
-$(greenprint '13)') Allow Wifi for Standard User
-$(greenprint '14)') Install Wifi Driver
+$(redprint '11)') Remove Temp and Reset
+$(greenprint '12)') Repair Wired & Wireless Connection
+$(greenprint '13)') Allow Wifi Access for Standard User
+$(greenprint '14)') Install Wi-Fi Driver
 $(greenprint '15)') Remove Unnecessary/Unwanted Software
 $(greenprint '16)') HP printer & Scanner Driver
 $(greenprint '17)') Barcode Printer Driver
-$(greenprint '18)') Repair User
-$(redprint '19)') Download Software
-$(greenprint '20)') Update ASI Script
+$(greenprint '18)') Repair Standard/Root User
+$(redprint '19)') Beta Features ( Hp Driver Troubleshoots)
+$(redprint '20)') Update ASI Script
 $(redprint 'Exit)')
 Please enter your choice : "
 read -r opt
@@ -852,15 +852,7 @@ exit
         											 19)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 
-echo "Please Enter a User ID Number : "
-read uid
 
- if [ $(grep -w $uid) -n </etc/passwd ] ;
- then
-    grep -w $uid /etc/passwd | cut -d ":" -f "1" | xargs echo "Welcome : "
-else
-    echo "user not found"
-fi
 
 exit
             ;;
@@ -917,7 +909,17 @@ https://www.thegeekstuff.com/2010/07/bash-case-statement/
 https://gist.github.com/waleedahmad/a5b17e73c7daebdd048f823c68d1f57a
 https://www.tecmint.com/using-shell-script-to-automate-linux-system-maintenance-tasks/
 https://linuxconfig.org/bash-scripting-tutorial
+###########
+echo "Please Enter a User ID Number : "
+read uid
 
+ if [ $(grep -w $uid) -n </etc/passwd ] ;
+ then
+    grep -w $uid /etc/passwd | cut -d ":" -f "1" | xargs echo "Welcome : "
+else
+    echo "user not found"
+fi
+##########
 exit
       ;;
         "Quit")
