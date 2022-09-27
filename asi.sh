@@ -638,10 +638,13 @@ hp-probe
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 apt remove hplip-data hplip hplip-gui -y
 apt purge hplip-data hplip hplip-gui -y
-rm -rf hplip*.run
-wget https://developers.hp.com/sites/default/files/hplip-3.20.11-plugin.run
+rm hplip*.*
+#wget https://developers.hp.com/sites/default/files/hplip-3.22.11-plugin.run
+wget https://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/hplip-3.20.3-plugin.run
+wget https://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/hplip-3.20.3-plugin.run.asc
+apt install hplip -y
 chmod +x hplip-3*.run
-./hplip-3*run
+./hplip*.run
   ;;
  "Uninstallation")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
@@ -651,9 +654,12 @@ apt purge hplip-data hplip hplip-gui -y
  "Check Existing Driver Information")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 apt-cache search hplip
+echo "================="
 cat /etc/lsb-release && uname -ir && groups && lsusb 
+echo "================="
 dpkg -l | grep hplip
-resolvectl status
+echo "================="
+#resolvectl status
 	    
             break
 exit
