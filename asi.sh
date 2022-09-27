@@ -58,7 +58,7 @@ $(greenprint '6)') Mannual Software Installation-Offline Mode
 $(redprint '7)') Mannual Software Uninstallation
 $(redprint '8)') Remote to Windows Server
 $(greenprint '9)') Reset Ubuntu Setting
-$(redprint '10)') Debug Application & Driver
+$(greenprint '10)') HP Driver Toolbox
 $(redprint '11)') Remove Temp and Reset
 $(greenprint '12)') Repair Wired & Wireless Connection
 $(greenprint '13)') Allow Wifi Access for Standard User
