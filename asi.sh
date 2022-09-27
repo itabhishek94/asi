@@ -67,7 +67,7 @@ $(greenprint '15)') Remove Unnecessary/Unwanted Software
 $(greenprint '16)') HP printer & Scanner Driver
 $(greenprint '17)') Barcode Printer Driver
 $(greenprint '18)') Repair Standard/Root User
-$(redprint '19)') Beta Features ( Hp Driver Troubleshoots)
+$(yellowprint '19)') Beta Features ( Hp Driver Troubleshoots)
 $(redprint '20)') Update ASI Script
 $(redprint 'Exit)')
 Please enter your choice : "
@@ -736,6 +736,11 @@ sudo apt update -y
             ;;
         											 16)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
+	    
+	    sudo apt update -y
+sudo apt upgrade -y
+apt-cache search hplip
+sudo apt install hplip hplip-gui
 	    sudo apt install apparmor-utils
 sudo aa-disable /usr/share/hplip/plugin.py
 hp-plugin
@@ -852,24 +857,28 @@ exit
         											 19)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
 
-
+# Linux all devices on the network:
+hp-probe -bnet
+# Search all devices on USB that support scanning:
+hp-probe -busb -escan
+# Search and list all devices that have queues installed in CUPS:
+hp-probe -bcups
+# Try to search all devices on the USB bus:
+hp-probe
 
 exit
             ;;
         											 20)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
+sudo apt update -y
+sudo apt upgrade -y
+dpkg -r hplip -y
+sudo apt install python-is-python3 -y
+sudo apt install libavahi-core-dev -y
+sudo apt install hplip hplip-gui -y
+sudo python3 uninstall.py
+chmod u+x hplip*.run
 
-#Plugin for checking if the SSH service is running
-
-SERVICE='ssh'
-
-if [ ps aux | grep -v grep | grep $SERVICE > /dev/null ];
-then
-        exit 0
-else
-        exit 1
-fi
-exit
 
             ;;
         "Logout")
