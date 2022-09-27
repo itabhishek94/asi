@@ -878,6 +878,7 @@ sudo apt install libavahi-core-dev -y
 sudo apt install hplip hplip-gui -y
 sudo python3 uninstall.py
 chmod u+x hplip*.run
+echo  -e "\e[31;43m*****Abhishek : System directory crashed. The system required an OS reinstallation. *****\e[0m"
 
 
             ;;
