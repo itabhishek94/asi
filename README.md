@@ -55,3 +55,19 @@ https://www.liveagent.com/templates/ticketing/
 
 Other link
 https://my-blog.my.id/download-apache-open-office-installer/
+
+======================================================================================
+Emulating a COM/Serial Port over USB Using CDC Driver ( scan this code after replaced Wireless scanner at armstrong machine ) 
+
+Procedure: 
+
+Install the downloaded file.
+Reboot the host.
+Scan the following barcode. from below link
+https://zebratechnologies.force.com/s/article/Emulating-a-COM-Serial-Port-Over-USB-using-CDC-driver?language=en_US
+or
+https://github.com/itabhishek94/asi/raw/main/rtaImage.jfif
+
+      CDC Host Bar code
+Now, your scanner should show up in Device Manager with a COM port number.
+======================================================================================
