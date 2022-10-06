@@ -53,7 +53,7 @@ $(greenprint '1)') Ubuntu Audit
 $(greenprint '2)') System Information
 $(greenprint '3)') Rename Hostname
 $(greenprint '4)') Automatic Software Installation-Offline Mode
-$(redprint '5)') Automatic Software Installation-Online Mode
+$(greenprint '5)') Automatic Software Installation-Online Mode
 $(greenprint '6)') Mannual Software Installation-Offline Mode
 $(redprint '7)') Mannual Software Uninstallation
 $(redprint '8)') Remote to Windows Server
@@ -390,6 +390,8 @@ exit
             echo "you chose choice $REPLY which is $opt.Please Wait...!"
 #!/bin/bash
 sudo apt remove anydesk -y
+#sudo apt-get remove --purge libreoffice* -y
+sudo apt-get clean -y
 sudo apt-get autoremove -y
 sudo apt autoremove -y
 sudo apt update -y
@@ -398,9 +400,35 @@ sudo apt-get install build-essential net-tools -y
 sudo apt update --fix-missing -y
 sudo apt --fix-broken install -y
 sudo apt list --upgradable -y
+sudo apt install wget
+sleep 5 
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+sleep 5 
 echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
-sudo apt update
+sleep 5 
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sleep 5 
+wget https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/10976/wps-office_11.1.0.10976.XA_amd64.deb
+sleep 5 
+sudo apt install apt-transport-https ca-certificates curl software-properties-common wget -y
+sleep 5 
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sleep 5 
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+sudo apt install software-properties-common apt-transport-https wget ca-certificates gnupg2 -y
+sleep 5 
+sudo wget -O- https://keys.anydesk.com/repos/DEB-GPG-KEY | gpg --dearmor | sudo tee /usr/share/keyrings/anydesk.gpg
+sleep 5 
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/anydesk.gpg] http://deb.anydesk.com/ all main' | sudo tee /etc/apt/sources.list.d/anydesk.list
+sudo apt update -y
+sleep 5 
+sudo apt install google-chrome-stable -y
+sleep 5 
+sudo apt install anydesk -y
+sleep 5 
+mv wps*.deb wpsoffice_installer.deb
+sleep 5 
+sudo apt install wpsoffice_installer.deb
 sudo dpkg -i anydesk*.deb
 sudo apt install -f -y
 sudo dpkg -i google-chrome*.deb
