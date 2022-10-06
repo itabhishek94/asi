@@ -49,7 +49,7 @@ fn_fail() { echo "Wrong option." exit 1; }
 mainmenu() {
 echo -ne "
 $(magentaprint 'MAIN MENU')
-$(greenprint '1)') Ubuntu Audit
+$(greenprint '1)') Delhivery Roboscan
 $(greenprint '2)') System Information
 $(greenprint '3)') Rename Hostname
 $(greenprint '4)') Automatic Software Installation-Offline Mode
@@ -57,9 +57,9 @@ $(greenprint '5)') Automatic Software Installation-Online Mode
 $(greenprint '6)') Mannual Software Installation-Offline Mode
 $(redprint '7)') Mannual Software Uninstallation
 $(redprint '8)') Remote to Windows Server
-$(greenprint '9)') Reset Ubuntu Setting
-$(greenprint '10)') HP Driver Toolbox
-$(redprint '11)') Remove Temp and Reset
+$(greenprint '9)') Fix Ubuntu OS Services & Application
+$(greenprint '10)') Printer Drivers
+$(redprint '11)') Memory Booster
 $(greenprint '12)') Repair Wired & Wireless Connection
 $(greenprint '13)') Allow Wifi Access for Standard User
 $(greenprint '14)') Install Wi-Fi Driver
@@ -67,7 +67,7 @@ $(greenprint '15)') Remove Unnecessary/Unwanted Software
 $(greenprint '16)') HP printer & Scanner Driver
 $(greenprint '17)') Barcode Printer Driver
 $(greenprint '18)') Repair Standard/Root User
-$(yellowprint '19)') Beta Features ( Hp Driver Troubleshoots)
+$(yellowprint '19)') Beta Features ( Ghost Mode )
 $(redprint '20)') Update ASI Script
 $(redprint 'Exit)')
 Please enter your choice : "
