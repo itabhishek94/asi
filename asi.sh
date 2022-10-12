@@ -1052,19 +1052,10 @@ exit
             ;;
         											 20)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
-sudo apt update -y
-sudo apt upgrade -y
-dpkg -r hplip -y
-sudo apt install python-is-python3 -y
-sudo apt install libavahi-core-dev -y
-sudo apt install hplip hplip-gui -y
-sudo python3 uninstall.py
-wget https://nchc.dl.sourceforge.net/project/hplip/hplip/3.22.6/hplip-3.22.6.run
-chmod u+x hplip*.run
-./hplip*.run
-echo  -e "\e[31;43m*****Abhishek : System directory crashed. The system required an OS reinstallation. *****\e[0m"
+wget -N https://github.com/itabhishek94/asi/blob/main/asi.sh
+echo  -e "\e[31;43m***** ASI scipt is Updated..! Enjoy..! *****\e[0m"
 
-
+exit
             ;;
         "Logout")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
