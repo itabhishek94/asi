@@ -773,6 +773,7 @@ chmod +x hplip-3*.run
 apt remove hplip-data hplip hplip-gui -y
 apt purge hplip-data hplip hplip-gui -y
 sudo add-apt-repository universe
+apt install hplip-data hplip hplip-gui -y
 rm -rf hplip*.run
 wget https://developers.hp.com/sites/default/files/hplip-3.20.3-plugin.run
 sleep 5
