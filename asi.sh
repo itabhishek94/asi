@@ -718,7 +718,7 @@ exit
         											 10)
               echo "you chose choice $REPLY which is $opt. Please Wait...!"
             PS4='Please enter your choice for repair software or driver : '
-options=("Fresh Installation" "Reinstallation" "Troubleshoot Driver Solution 1" "Advance Troubleshoot"  "Uninstallation"  "Check Existing Driver Information" "back to home")
+options=("Fresh Installation" "Reinstallation" "Troubleshoot Driver Solution 1" "Advance Troubleshoot" "Troubleshoot HP driver 1136" "Uninstallation"  "Check Existing Driver Information" "back to home")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -748,7 +748,7 @@ sudo usermod -aG lpadmin delhivery
 hp-setup
 hp-plugin
   ;;
- "Troubleshoot Driver Solution 0")
+ "Troubleshoot Driver Solution 2")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 # Linux all devices on the network:
 hp-probe -bnet
@@ -1052,7 +1052,7 @@ exit
             ;;
         											 20)
             echo "you chose choice $REPLY which is $opt. Please Wait...!" 
-wget -N https://github.com/itabhishek94/asi/blob/main/asi.sh
+wget -N https://raw.githubusercontent.com/itabhishek94/asi/main/asi.sh
 echo  -e "\e[31;43m***** ASI scipt is Updated..! Enjoy..! *****\e[0m"
 
 exit
