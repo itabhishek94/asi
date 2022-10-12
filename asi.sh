@@ -748,7 +748,7 @@ sudo usermod -aG lpadmin delhivery
 hp-setup
 hp-plugin
   ;;
- "Troubleshoot Driver Solution 1")
+ "Troubleshoot Driver Solution 0")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 # Linux all devices on the network:
 hp-probe -bnet
@@ -768,6 +768,25 @@ wget https://developers.hp.com/sites/default/files/hplip-3.20.11-plugin.run
 chmod +x hplip-3*.run
 ./hplip-3*run
   ;;
+  "Troubleshoot HP driver 1136")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+apt remove hplip-data hplip hplip-gui -y
+apt purge hplip-data hplip hplip-gui -y
+sudo add-apt-repository universe
+rm -rf hplip*.run
+wget https://developers.hp.com/sites/default/files/hplip-3.20.3-plugin.run
+sleep 5
+wget https://developers.hp.com/sites/default/files/hplip-3.20.3-plugin.run.asc
+sleep 5
+wget https://developers.hp.com/sites/default/files/hplip-3.22.6-plugin.run
+sleep 5
+wget https://developers.hp.com/sites/default/files/hplip-3.22.6-plugin.run.asc
+sleep 5
+chmod +x hplip*.run
+chmod +x *.asc
+hp-plugin
+;;
+  
  "Uninstallation")
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 apt remove hplip-data hplip hplip-gui -y
