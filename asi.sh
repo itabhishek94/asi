@@ -1676,6 +1676,10 @@ select opt in "${options[@]}"
 do
     case $opt in
     "TSC/Zenpert Barcode Printer Driver Installation")
+wget https://raw.githubusercontent.com/itabhishek94/asi/main/TE210.ppd
+sleep 5
+wget https://github.com/itabhishek94/asi/raw/main/barcodedriver-1.2.06_x86-64.tar.gz
+sleep 5
     tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
 tar -xvf barcodedriver*.tar.gz
 tar -xvf LinuxSoftware_E1000_v4.2.1.x86_64.deb.tar.gz
@@ -1685,6 +1689,10 @@ chmod +x install-driver uninstall-driver
 ;;
   
   "TSC/Zenpert Barcode Printer Driver Reinstallation")
+  wget https://raw.githubusercontent.com/itabhishek94/asi/main/TE210.ppd
+sleep 5
+wget https://github.com/itabhishek94/asi/raw/main/barcodedriver-1.2.06_x86-64.tar.gz
+sleep 5
     tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
 tar -xvf barcodedriver*.tar.gz
 tar -xvf LinuxSoftware_E1000_v4.2.1.x86_64.deb.tar.gz
@@ -1694,6 +1702,10 @@ chmod +x install-driver uninstall-driver
 ./install-driver
 ;;
 "TSC/Zenpert Barcode Printer Driver Uninstallation")
+wget https://raw.githubusercontent.com/itabhishek94/asi/main/TE210.ppd
+sleep 5
+wget https://github.com/itabhishek94/asi/raw/main/barcodedriver-1.2.06_x86-64.tar.gz
+sleep 5
     tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
 tar -xvf barcodedriver*.tar.gz
 tar -xvf LinuxSoftware_E1000_v4.2.1.x86_64.deb.tar.gz
