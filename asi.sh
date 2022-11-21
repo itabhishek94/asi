@@ -62,6 +62,7 @@ fn_fail() { echo "Wrong option." exit 1; }
 mainmenu() {
 echo -ne "
 $(magentaprint 'MAIN MENU')
+$(blueprint '0)') Mesh central
 $(greenprint '1)') Delhivery Roboscan
 $(greenprint '2)') System Information
 $(greenprint '3)') Rename Hostname
@@ -92,6 +93,17 @@ Please enter your choice : "
 read -r opt
 
     case $opt in
+    
+    
+        											 0)
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+clear
+
+
+echo ""
+echo -e "\e[1;32m Mesh central is upcoming soon \e[0m"
+exit
+            ;;
         											 1)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 clear
