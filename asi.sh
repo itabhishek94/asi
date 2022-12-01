@@ -62,26 +62,26 @@ fn_fail() { echo "Wrong option." exit 1; }
 mainmenu() {
 echo -ne "
 $(magentaprint 'MAIN MENU')
-$(blueprint '0)') Mesh central
+$(redprint '0)') Forticlient VPN
 $(greenprint '1)') Delhivery Roboscan
 $(greenprint '2)') System Information
-$(greenprint '3)') Rename Hostname
-$(greenprint '4)') Automatic Software Installation-Offline Mode
-$(greenprint '5)') Automatic Software Installation-Online Mode
-$(greenprint '6)') Mannual Software Installation Mode
+$(greenprint '3)') Rename the Hostname
+$(redprint '4)') Remote Client Software
+$(greenprint '5)') Automatic All Software Installation [online/offline]
+$(greenprint '6)') Mannual Software Installation
 $(redprint '7)') Mannual Software Uninstallation
 $(yellowprint '8)') Remote to Windows Server
 $(greenprint '9)') Debug Services & Application
-$(greenprint '10)') Computer Hardware & Printer Driver
+$(greenprint '10)') Printer Driver
 $(redprint '11)') Memory Booster
 $(greenprint '12)') Repair Wired & Wireless Connection
 $(greenprint '13)') Allow Wifi Access for Standard User
-$(greenprint '14)') Install Wi-Fi Driver
+$(redprint '14)') Install Wi-Fi Driver
 $(greenprint '15)') Remove Unnecessary/Unwanted Software
 $(redprint '16)') Hardware Monitor
 $(redprint '17)') Network Monitor
 $(greenprint '18)') Repair Standard/Root Accounts
-$(yellowprint '19)') Configured VPN Connection
+$(yellowprint '19)') Virtual Private Network (VPN)
 $(greenprint '20)') Update Script
 $(yellowprint '21)') Download Software
 $(redprint '22)') Feature Requests or Feedback
@@ -99,17 +99,98 @@ read -r opt
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 clear
 
+echo "you chose choice $REPLY which is $opt. Please Wait...!"
+            PS4='Please enter your choice for repair software or driver : '
+options=("CONFIGURE VPN" "EXISTING PROFILE" "VPN STATUS"
+"VPN CONNECT"
+"VPN DISCONNECT"
+"VPN INSTALL"
+"VPN REINSTALL")
+select opt in "${options[@]}"
+do
+    case $opt in
+     
+  "CONFIGURE VPN")
+  
+              echo "you chose choice $REPLY which is $opt. Please Wait...!"
+              echo "" 
+   
+echo -ne "$(greenprint 'vpn configure process start')\e[31;43m Please wait...  \e[0m";
+echo "";
 
-echo ""
-echo -e "\e[1;32m Mesh central is upcoming soon \e[0m"
+
+
+      echo  -e "\e[31;43m***** vpn configured.*****\e[0m"  
+
+
+    exit
+;;
+
+"CONFIGURE VPN")
+  
+              echo "you chose choice $REPLY which is $opt. Please Wait...!"
+              echo "" 
+   
+echo -ne "$(greenprint 'vpn configure process start')\e[31;43m Please wait...  \e[0m";
+echo "";
+sudo apt autoremove -y --purge forticlient
+sudo dpkg -i forti*
+/opt/forticlient/./fortivpn status
+#https://drive.google.com/drive/folders/1uvS5dPeTJQO03yH2TuSA4IZ94WZfb01M?usp=sharing
+#./forticlientsslvpn_cli --server vpn.itinfra.delhivery.com:10443 --vpnuser itsuratpc@delhivery.com
+#/opt/forticlient/./fortivpn Abhishek --user=it.suratpc@delhivery.com --password --save-password --always-up
+#fortivpn disconnect
+#fortivpn remove my_vpn_name
+#/opt/forticlient/./fortivpn  list
+#/opt/forticlient/./fortivpn status
+#/opt/forticlient/./fortivpn disconnect
+#fortivpn view my_vpn_name
+
+#/opt/forticlient/start-fortitray-launcher.sh
+
+#vpn --server=server --user=username --password --cert-path=certificate_path --cert-passwd
+#vpn -s server -u username -p
+#/opt/forticlient/./vpn -s vpn.itinfra.delhivery.com:10443 -u it.suratpc@delhivery.com -p Welcome@123
+
+#dpkg -i forticlient_vpn_*
+#cd  forticlientsslvpn/64bit/
+#cd /opt/forticlient
+#./forticlientsslvpn_cli --server serveraddress:port --vpnuser username
+
+
+
+
+      echo  -e "\e[31;43m***** vpn configured.*****\e[0m"  
+
+
+    exit
+;;
+ "VPN STATUS")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+echo "================="
+
+/opt/forticlient/./fortivpn status
 exit
+	
+	
+	  ;;
+            "back to home")
+            ./asi.sh
+            break
+exit
+exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
             ;;
         											 1)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
 clear
 # -Hostname information:
 echo -e "\e[31;43m***** HOSTNAME INFORMATION *****\e[0m"
-hostnamectl
+hostnamectl | egrep --color='auto' -z "hostname"
 echo ""
 # -Mac Address information:
 echo -e "\e[31;43m***** MAC Address INFORMATION *****\e[0m"
@@ -315,11 +396,10 @@ exit
 sudo apt remove anydesk -y
 sudo apt purge anydesk -y
 sudo apt-get clean -y
-sudo apt purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex  gnome-robots gnome-chess lightsoff swell-foop quadrapassel -y
 sudo apt-get autoremove -y
 sudo apt autoremove -y
 sudo apt update -y
-sudo apt-get install build-essential net-tools ssh -y
+sudo apt-get install build-essential net-tools ssh zip unzip -y
 sudo apt update --fix-missing -y
 sudo apt --fix-broken install -y
 sudo apt list --upgradable -y
@@ -399,16 +479,16 @@ exit
         											 5)
             echo "you chose choice $REPLY which is $opt.Please Wait...!"
 #!/bin/bash
-sudo apt remove anydesk -y
 #sudo apt-get remove --purge libreoffice* -y
+sudo apt purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy gnome-sushi gnome-taquin gnome-tetravex gnome-robots gnome-chess lightsoff swell-foop quadrapassel -y
 sudo apt-get clean -y
 sudo apt-get autoremove -y
 sudo apt autoremove -y
 sudo apt update -y
-sudo apt-get install build-essential net-tools -y
+sudo apt-get install build-essential net-tools zip unzip -y
 sudo apt update --fix-missing -y
 sudo apt --fix-broken install -y
-sudo apt list --upgradable
+sudo apt list --upgradable -y
 sudo apt install wget
 sleep 5 
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
@@ -449,11 +529,11 @@ chmod +x klnagent*.sh
 sleep 5
 /opt/kaspersky/klnagent64/bin/./klnagchk
 sleep 5
-sudo dpkg -i kesl_11.2.0-4528_amd64.deb
+sudo dpkg -i kesl*.deb
 sleep 5
 /opt/kaspersky/kesl/bin/kesl-setup.pl
 sleep 5
-yes Y | kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG 
+yes Y | kesl-control -L --add-active-key 
 sleep 5
 #wget
 tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
@@ -1931,98 +2011,25 @@ route | grep '^default' | grep -o '[^ ]*$'
             ;;
         											 18)
             echo "you chose choice $REPLY which is $opt. Please Wait...!"
-sudo cat > /etc/ssh/sshd_config << EOF
-# Package generated configuration file
-# See the sshd_config(5) manpage for details
- 
-# What ports, IPs and protocols we listen for
-Port 22
-# Use these options to restrict which interfaces/protocols sshd will bind to
-#ListenAddress ::
-#ListenAddress 0.0.0.0
-Protocol 2
-# HostKeys for protocol version 2
-HostKey /etc/ssh/ssh_host_rsa_key
-HostKey /etc/ssh/ssh_host_dsa_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
-HostKey /etc/ssh/ssh_host_ed25519_key
-#Privilege Separation is turned on for security
-UsePrivilegeSeparation yes
- 
-# Lifetime and size of ephemeral version 1 server key
-KeyRegenerationInterval 3600
-ServerKeyBits 1024
- 
-# Logging
-SyslogFacility AUTH
-LogLevel INFO
- 
-# Authentication:
-LoginGraceTime 120
-PermitRootLogin yes
-StrictModes yes
- 
-RSAAuthentication yes
-PubkeyAuthentication yes
-#AuthorizedKeysFile %h/.ssh/authorized_keys
- 
-# Don't read the user's ~/.rhosts and ~/.shosts files
-IgnoreRhosts yes
-# For this to work you will also need host keys in /etc/ssh_known_hosts
-RhostsRSAAuthentication no
-# similar for protocol version 2
-HostbasedAuthentication no
-# Uncomment if you don't trust ~/.ssh/known_hosts for RhostsRSAAuthentication
-#IgnoreUserKnownHosts yes
- 
-# To enable empty passwords, change to yes (NOT RECOMMENDED)
-PermitEmptyPasswords no
- 
-# Change to yes to enable challenge-response passwords (beware issues with
-# some PAM modules and threads)
-ChallengeResponseAuthentication no
- 
-# Change to no to disable tunnelled clear text passwords
-#PasswordAuthentication yes
- 
-# Kerberos options
-#KerberosAuthentication no
-#KerberosGetAFSToken no
-#KerberosOrLocalPasswd yes
-#KerberosTicketCleanup yes
- 
-# GSSAPI options
-#GSSAPIAuthentication no
-#GSSAPICleanupCredentials yes
- 
-X11Forwarding yes
-X11DisplayOffset 10
-PrintMotd no
-PrintLastLog yes
-TCPKeepAlive yes
-#UseLogin no
- 
-#MaxStartups 10:30:60
-#Banner /etc/issue.net
- 
-# Allow client to pass locale environment variables
-AcceptEnv LANG LC_*
- 
-Subsystem sftp /usr/lib/openssh/sftp-server
- 
-# Set this to 'yes' to enable PAM authentication, account processing,
-# and session processing. If this is enabled, PAM authentication will
-# be allowed through the ChallengeResponseAuthentication and
-# PasswordAuthentication.  Depending on your PAM configuration,
-# PAM authentication via ChallengeResponseAuthentication may bypass
-# the setting of "PermitRootLogin without-password".
-# If you just want the PAM account and session checks to run without
-# PAM authentication, then enable this but set PasswordAuthentication
-# and ChallengeResponseAuthentication to 'no'.
-UsePAM yes
+# Am i Root user?
+if [ $(id -u) -eq 0 ]; then
+username=delhivery
+password=Welcome@123
+	egrep "^$username" /etc/passwd >/dev/null
+	if [ $? -eq 0 ]; then
+		echo "$username exists!"
+		exit 1
+	else
+		pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+		useradd -m -p "$pass" "$username"
+        sudo adduser delhivery netdev
+		[ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
+	fi
+else
+	echo "Only root may add a user to the system."
+	exit 2
+fi
 
-EOF
-sudo service ssh restart
 exit
             ;;
        
