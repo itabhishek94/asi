@@ -208,7 +208,7 @@ service dcservice status | head -10 | egrep --color='auto' -z active
 # -Antivirus information:
 echo -e "\e[31;43m*****ANTIVIRUS SERVICE STATUS *****\e[0m"
 service klnagent64 status | head -10 | egrep --color='auto' -z active
-kesl-control --app-info | head -6 | grep --color='auto' -z "version"
+kesl-control --app-info | head -6 | grep --color='auto' -z "Version"
 ps -e | grep falcon-sensor
 sudo systemctl status falcon-sensor
 
