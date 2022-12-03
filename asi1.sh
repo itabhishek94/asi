@@ -7,6 +7,91 @@
                   #                                       "Thank You...!"                                            #
                   ####################################################################################################
 
+  PS4='Please enter your choice for repair software or driver : '
+options=("CONFIGURE VPN" "EXISTING PROFILE" "VPN STATUS"
+"VPN CONNECT"
+"VPN DISCONNECT"
+"VPN INSTALL"
+"VPN REINSTALL")
+select opt in "${options[@]}"
+do
+    case $opt in
+     
+  "CONFIGURE VPN")
+  
+              echo "you chose choice $REPLY which is $opt. Please Wait...!"
+              echo "" 
+   
+echo -ne "$(greenprint 'vpn configure process start')\e[31;43m Please wait...  \e[0m";
+echo "";
+
+
+
+      echo  -e "\e[31;43m***** vpn configured.*****\e[0m"  
+
+
+    exit
+;;
+
+"CONFIGURE VPN")
+  
+              echo "you chose choice $REPLY which is $opt. Please Wait...!"
+              echo "" 
+   
+echo -ne "$(greenprint 'vpn configure process start')\e[31;43m Please wait...  \e[0m";
+echo "";
+sudo apt autoremove -y --purge forticlient
+sudo dpkg -i forti*
+/opt/forticlient/./fortivpn status
+#https://drive.google.com/drive/folders/1uvS5dPeTJQO03yH2TuSA4IZ94WZfb01M?usp=sharing
+#./forticlientsslvpn_cli --server vpn.itinfra.delhivery.com:10443 --vpnuser itsuratpc@delhivery.com
+#/opt/forticlient/./fortivpn Abhishek --user=it.suratpc@delhivery.com --password --save-password --always-up
+#fortivpn disconnect
+#fortivpn remove my_vpn_name
+#/opt/forticlient/./fortivpn  list
+#/opt/forticlient/./fortivpn status
+#/opt/forticlient/./fortivpn disconnect
+#fortivpn view my_vpn_name
+
+#/opt/forticlient/start-fortitray-launcher.sh
+
+#vpn --server=server --user=username --password --cert-path=certificate_path --cert-passwd
+#vpn -s server -u username -p
+#/opt/forticlient/./vpn -s vpn.itinfra.delhivery.com:10443 -u it.suratpc@delhivery.com -p Welcome@123
+
+#dpkg -i forticlient_vpn_*
+#cd  forticlientsslvpn/64bit/
+#cd /opt/forticlient
+#./forticlientsslvpn_cli --server serveraddress:port --vpnuser username
+
+
+
+
+      echo  -e "\e[31;43m***** vpn configured.*****\e[0m"  
+
+
+    exit
+;;
+ "VPN STATUS")
+            echo "you chose choice $REPLY which is $opt. Please Wait...!"
+echo "================="
+
+/opt/forticlient/./fortivpn status
+exit
+	
+	
+	  ;;
+            "back to home")
+            ./asi.sh
+            break
+exit
+exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
+
 #!/bin/bash
 #https://linuxhint.com/install_openoffice_ubuntu_1804/
 #install ssh 
