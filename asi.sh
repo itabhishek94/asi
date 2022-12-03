@@ -137,13 +137,14 @@ echo -e "\e[31;43m*****ANTIVIRUS SERVICE STATUS *****\e[0m"
 service klnagent64 status | head -10 | egrep --color='auto' -z active
 kesl-control --app-info | head -6 | grep --color='auto' -z "Version"
 ps -e | grep falcon-sensor
+sudo /opt/CrowdStrike/falconctl -g --version
 sudo systemctl status falcon-sensor
-
 echo ""
 
 # -Antivirus Activation information:
 echo -e "\e[31;43m*****ANTIVIRUS ACTIVATION - STATUS *****\e[0m"
 kesl-control -L --query
+
 echo ""
 # -Free and used memory in the system:
 echo -e "\e[31;43m ***** FREE AND USED MEMORY *****\e[0m"
@@ -729,7 +730,16 @@ kesl-control -L --query
             ;;
              
              "Crowdstrike Antivirus")
-           sudo dpkg -i falcon-sensor*.deb  
+	     wget https://delhiveryasset.000webhostapp.com/falcon-sensor_6.39.0-13601_amd64.deb
+	     sleep 5
+           sudo dpkg -i falcon-sensor*.deb 
+	   sleep 5
+	   sudo /opt/CrowdStrike/falconctl -s --cid=A73DF32BAAC547609911E2A06BAB5426-2C
+	   sleep 5
+	   systemctl falcon-sensor start
+	   sleep 5
+sudo /opt/CrowdStrike/falconctl -g --version
+
             ;;
             
             "Open Office")
