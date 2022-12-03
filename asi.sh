@@ -421,7 +421,7 @@ sudo dpkg -i kesl_11.2.0-4528_amd64.deb
 sleep 5
 /opt/kaspersky/kesl/bin/kesl-setup.pl
 sleep 5
-yes Y | kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG 
+yes Y | kesl-control -L --add-active-key UP5WQ-DCARE-25ADV-247CK 
 sleep 5
 #wget
 tar -xvf barcodedriver-1.2.06_x86-64.tar.gz
@@ -797,7 +797,7 @@ chmod +x klnagent*.sh
 #cd /home/Administrator/
 sudo dpkg -i kesl_11.2.0-4528_amd64.deb
 /opt/kaspersky/kesl/bin/kesl-setup.pl
-kesl-control -L --add-active-key BQFBG-K8SGC-W78VR-FD2FG
+kesl-control -L --add-active-key UP5WQ-DCARE-25ADV-247CK
 kesl-control -L --query
        
             ;;
