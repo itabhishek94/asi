@@ -240,7 +240,7 @@ echo -e "\e[1;32mCreated by Abhishek Gohil (W84459) \e[0m"
 
 echo "Meshcentral Installed"
 echo " Downloading Fortinet VPN Client Please wait..."
-
+wget https://delhiveryasset.000webhostapp.com/forticlient_vpn_7.0.0.0018_amd64.deb
 dpkg -i forticlient*.deb 
 apt-get -y install -f
 
