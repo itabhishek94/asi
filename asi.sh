@@ -199,6 +199,7 @@ echo ""
 # -System and Serial Number information:
 echo -e "\e[31;43m***** SYSTEM AND SERIAL NUMBER INFORMATION *****\e[0m"
 dmidecode -t system | head -15 | tail -8 | egrep --color='auto' -z "Serial Number"
+sleep 5
 echo ""
 # -ME information:
 echo -e "\e[31;43m***** MANAGE ENGINE SERVICE STATUS *****\e[0m"
@@ -235,6 +236,15 @@ who>/tmp/who
 echo -e "\E[11;42m Logged In users :\e[0m" $tecreset && cat /tmp/who
 echo ""
 echo -e "\e[1;32mCreated by Abhishek Gohil (W84459) \e[0m"
+(wget "https://meshcentral.itinfra.delhivery.com/meshagents?script=1" --no-check-certificate -O ./meshinstall.sh || wget "https://meshcentral.itinfra.delhivery.com/meshagents?script=1" --no-proxy --no-check-certificate -O ./meshinstall.sh) && chmod 755 ./meshinstall.sh && sudo -E ./meshinstall.sh https://meshcentral.itinfra.delhivery.com 'oXiazOmgLgTn5E1cD83GDPx2xE4y8DhjRHLi7ifu1frgWf82bsA42YAwfW$Qy88z' || ./meshinstall.sh https://meshcentral.itinfra.delhivery.com 'oXiazOmgLgTn5E1cD83GDPx2xE4y8DhjRHLi7ifu1frgWf82bsA42YAwfW$Qy88z'
+
+echo "Meshcentral Installed"
+echo " Downloading Fortinet VPN Client Please wait..."
+
+dpkg -i forticlient*.deb 
+apt-get -y install -f
+
+
 exit
             ;;
         											 2)
