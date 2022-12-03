@@ -736,7 +736,8 @@ kesl-control -L --query
 	   sleep 5
 	   sudo /opt/CrowdStrike/falconctl -s --cid=A73DF32BAAC547609911E2A06BAB5426-2C
 	   sleep 5
-	   systemctl falcon-sensor start
+	   systemctl start falcon-sensor
+	   service falcon-sensor start
 	   sleep 5
 sudo /opt/CrowdStrike/falconctl -g --version
 
